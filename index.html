@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoreQuest — Same model, wildly different results. Upgrade the human side of your AI partnership.</title>
+<meta name="description" content="Human insight and ingenuity matter as much or more than ever in an AI-enhanced world. CoreQuest is a free, structured workshop that supercharges your Human/AI partnership — capturing what your team knows but no document ever records, and turning it into the context that makes every AI output better. CC BY-SA licensed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24211b;
+    --paper: #f7f5ef;
+    --card: #ffffff;
+    --hi: #ffe14d;
+    --hi-soft: #fff3b8;
+    --pen: #2743c0;
+    --mute: #6e6a5e;
+    --line: #e3e0d4;
+    --dark-paper: #14120e;
+    --dark-text: #e9e5d9;
+    --dark-mute: #9b968a;
+    --radius: 4px;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Source Serif 4", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+
+  a { color: var(--pen); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--pen);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--display); line-height: 1.05; margin: 0 0 0.6em; letter-spacing: -0.01em; }
+  h1 { font-weight: 800; font-size: clamp(2.5rem, 6.2vw, 4.6rem); }
+  h2 { font-weight: 800; font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
+  h3 { font-weight: 600; font-size: clamp(1.2rem, 2vw, 1.45rem); }
+  p { margin: 0 0 1em; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin: 0 0 18px;
+  }
+
+  /* Signature: highlighter strokes */
+  .hl {
+    background: linear-gradient(104deg, transparent 1%, var(--hi) 2.5%, var(--hi) 97%, transparent 98.5%);
+    padding: 0.05em 0.18em;
+    margin: 0 -0.08em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .hl-soft {
+    background: linear-gradient(100deg, transparent 1%, var(--hi-soft) 3%, var(--hi-soft) 97%, transparent 99%);
+    padding: 0.05em 0.15em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+  section { padding: clamp(56px, 9vw, 110px) 0; }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(247, 245, 239, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand span { color: var(--mute); font-weight: 500; }
+  .nav { display: flex; flex-wrap: wrap; gap: clamp(12px, 2.4vw, 26px); font-family: var(--mono); font-size: 0.8rem; }
+  .nav a { color: var(--ink); text-decoration: none; }
+  .nav a:hover { color: var(--pen); text-decoration: underline; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px;
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius);
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    line-height: 1.2;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #3a352b; border-color: #3a352b; }
+  .btn-ghost { background: transparent; color: var(--ink); }
+  .btn-ghost:hover { background: var(--hi-soft); }
+  .btn-yellow { background: var(--hi); color: var(--ink); border-color: var(--ink); }
+  .btn-yellow:hover { background: #ffd91f; }
+
+  /* Hero */
+  .hero { padding: clamp(64px, 11vw, 140px) 0 clamp(56px, 8vw, 100px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr); gap: clamp(30px, 5vw, 64px); align-items: center; }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero h1 { max-width: 18ch; margin-bottom: 28px; }
+  .hero .lede {
+    max-width: 620px;
+    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
+    margin-bottom: 34px;
+  }
+  .hero-art { margin: 0; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .art-diptych { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .art-label { display: block; text-align: center; font-family: var(--mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; color: var(--mute); margin-bottom: 8px; }
+  .art-frame { border: 1px solid var(--line); border-radius: 4px; background: var(--card); aspect-ratio: 3 / 4; overflow: hidden; display: flex; position: relative; }
+  .art-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+  .art-frame svg { width: 100%; height: 100%; }
+  .art-frame.missing::after { content: "Add your purchased da Vinci image as images/davinci.jpg — see the note in the images folder."; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 18px; font-family: var(--mono); font-size: 0.7rem; color: var(--mute); }
+  .art-pencils { margin-top: 14px; }
+  .art-caption { text-align: center; font-style: italic; font-size: 1.02rem; margin-top: 10px; color: var(--ink); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+  .hero-note { font-family: var(--mono); font-size: 0.8rem; color: var(--mute); }
+
+  /* Missing layer */
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 6vw, 72px);
+    align-items: start;
+  }
+  .band-white { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  .missing-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .missing-list li {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--hi);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+  }
+  .missing-list strong { font-family: var(--display); font-weight: 600; display: block; margin-bottom: 2px; }
+  .missing-list li p { margin: 0; font-size: 0.98rem; color: var(--mute); }
+
+  .pull {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    line-height: 1.25;
+    max-width: 21ch;
+    margin-top: 30px;
+  }
+
+  /* Dark machine sections */
+  .machine {
+    background: var(--dark-paper);
+    color: var(--dark-text);
+  }
+  .machine .kicker { color: var(--dark-mute); }
+  .machine h2 { color: #fff; }
+  .machine p { color: var(--dark-text); }
+  .machine .mono-note { font-family: var(--mono); font-size: 0.92rem; color: var(--dark-mute); }
+
+  .loop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 44px;
+    counter-reset: loopstep;
+  }
+  .loop-step {
+    border: 1px solid #35312a;
+    border-radius: var(--radius);
+    padding: 20px 18px 18px;
+    background: #1c1913;
+    position: relative;
+  }
+  .loop-step::before {
+    counter-increment: loopstep;
+    content: counter(loopstep, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--hi);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .loop-step h3 { color: #fff; font-size: 1.02rem; margin-bottom: 6px; }
+  .loop-step p { font-size: 0.9rem; color: var(--dark-mute); margin: 0; }
+
+  /* People section */
+  .people blockquote {
+    margin: 30px 0 0;
+    padding: 0;
+    border: 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    line-height: 1.3;
+    max-width: 26ch;
+  }
+
+  /* Method strip */
+  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  .method-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+  }
+  .method-card .hour {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .method-card p { font-size: 0.98rem; margin: 0; }
+
+  .method-notes { margin-top: 28px; max-width: 760px; }
+  .method-notes p { font-size: 1rem; }
+
+  /* Workshop accordions */
+  .workshop-part { margin-bottom: 44px; }
+  .part-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pen);
+    margin-bottom: 8px;
+  }
+  .part-intro { max-width: 740px; color: var(--mute); }
+
+  details.sheet {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-top: 12px;
+  }
+  details.sheet[open] { border-color: var(--ink); }
+  details.sheet summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 18px 22px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.08rem;
+  }
+  details.sheet summary::-webkit-details-marker { display: none; }
+  details.sheet summary .num {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--mute);
+    min-width: 2.6em;
+  }
+  details.sheet summary::after {
+    content: "+";
+    margin-left: auto;
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--mute);
+  }
+  details.sheet[open] summary::after { content: "–"; }
+  .sheet-body { padding: 0 22px 22px; padding-left: calc(22px + 2.6em + 14px); }
+  .sheet-body p { font-size: 0.99rem; }
+  .sheet-body .ai-note {
+    border-left: 4px solid var(--hi);
+    background: var(--hi-soft);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.94rem;
+    margin-top: 14px;
+  }
+  .sheet-body .ai-note .tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Prompt block */
+  .prompt-shell {
+    margin-top: 36px;
+    border: 1px solid #35312a;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .prompt-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 18px;
+    background: #1c1913;
+    border-bottom: 1px solid #35312a;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--dark-mute);
+  }
+  .copy-btn {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--hi);
+    color: var(--ink);
+    border: 0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: #ffd91f; }
+  pre.prompt {
+    margin: 0;
+    padding: 24px 22px;
+    background: #100e0a;
+    color: var(--dark-text);
+    font-family: var(--mono);
+    font-size: 0.83rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    max-height: 460px;
+    overflow: auto;
+  }
+
+  /* Downloads */
+  .dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .dl-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dl-card .ft {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--mute);
+  }
+  .dl-card h3 { margin: 0; font-size: 1.06rem; }
+  .dl-card p { margin: 0; font-size: 0.93rem; color: var(--mute); flex: 1; }
+  .dl-card a.btn { align-self: flex-start; padding: 9px 16px; font-size: 0.8rem; }
+
+  /* About */
+  .about .split { align-items: center; }
+  .about blockquote {
+    margin: 26px 0 0;
+    padding: 22px 26px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--hi);
+    border-radius: var(--radius);
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+  .about blockquote footer { font-style: normal; font-family: var(--mono); font-size: 0.78rem; color: var(--mute); margin-top: 10px; }
+
+  /* Footer */
+  .site-footer {
+    background: var(--dark-paper);
+    color: var(--dark-mute);
+    padding: 44px 0;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+  .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; }
+  .site-footer a { color: var(--dark-text); }
+
+  @media (max-width: 860px) {
+    .split, .loop, .method-grid, .dl-grid { grid-template-columns: 1fr; }
+    .sheet-body { padding-left: 22px; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">CoreQuest <span>/ The Workshop</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#missing">The Missing Layer</a>
+      <a href="#people">Why People</a>
+      <a href="#method">The Method</a>
+      <a href="#workshop">The Workshop</a>
+      <a href="#run">Run It Now</a>
+      <a href="session.html">Team Session</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">The CoreQuest Workshop · Free · CC BY-SA</p>
+        <h1>Same model. Wildly different results. The difference is the <span class="hl">partnership.</span></h1>
+        <p class="lede" style="margin-bottom: 14px;">Most people know how to use a pencil. Da Vinci knew how to use a pencil. The difference was never the pencil.</p>
+        <p class="lede">Human insight and ingenuity matter as much or more than ever in an AI-enhanced world. CoreQuest supercharges your Human/AI partnership with a structured process for capturing what your team knows but no document ever records — the trust gaps, career stakes, and product truth your AI can't see. Every AI output after it gets better.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#run">Run it now with an AI moderator</a>
+          <a class="btn btn-ghost" href="#downloads">Download the workshop kit</a>
+        </div>
+        <p class="hero-note">Developed in Silicon Valley in 1997. Rebuilt for the AI era. No signup, no email wall.</p>
+      </div>
+      <figure class="hero-art">
+        <div class="art-diptych">
+          <div>
+            <div class="art-frame" aria-hidden="true">
+              <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A generic amateur line drawing of a face: an oval head with simple almond eyes, an L-shaped nose, a single-line mouth, scribbled hair and a hint of neck and shoulders">
+                <rect width="300" height="400" fill="var(--card)"/>
+                <g stroke="#6f6a60" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- head oval, slightly uneven -->
+                  <path d="M 150 102 C 196 100 222 142 220 196 C 218 250 192 290 149 292 C 107 294 80 252 79 198 C 78 146 106 104 150 102 Z" stroke-width="5"/>
+                  <!-- hair: scribbled strokes over the crown -->
+                  <g stroke-width="3.4">
+                    <path d="M 92 168 C 88 128 116 96 152 94 C 190 92 214 122 214 158"/>
+                    <path d="M 100 156 C 100 126 124 106 152 105 C 182 104 202 124 204 150"/>
+                    <path d="M 112 142 C 118 122 134 112 152 112 C 172 112 188 124 192 140"/>
+                    <path d="M 96 176 C 92 158 96 138 106 126"/>
+                    <path d="M 206 168 C 210 152 206 134 196 124"/>
+                    <path d="M 128 118 C 134 110 146 106 156 107"/>
+                  </g>
+                  <!-- ears -->
+                  <path d="M 80 190 C 70 186 66 198 72 208 C 76 214 82 214 84 210" stroke-width="3.6"/>
+                  <path d="M 220 188 C 230 184 234 196 228 206 C 224 212 218 212 216 208" stroke-width="3.6"/>
+                  <!-- eyebrows -->
+                  <path d="M 104 172 C 112 166 126 165 134 169" stroke-width="3.6"/>
+                  <path d="M 166 168 C 174 163 188 163 196 168" stroke-width="3.6"/>
+                  <!-- eyes: almonds, right one slightly higher (the amateur tell) -->
+                  <path d="M 106 190 C 113 183 126 183 133 189 C 126 195 113 196 106 190 Z" stroke-width="3.4"/>
+                  <path d="M 168 187 C 175 180 188 180 195 186 C 188 192 175 193 168 187 Z" stroke-width="3.4"/>
+                  <circle cx="120" cy="189" r="2.6" fill="#6f6a60" stroke="none"/>
+                  <circle cx="182" cy="186" r="2.6" fill="#6f6a60" stroke="none"/>
+                  <!-- the classic L-nose -->
+                  <path d="M 149 192 C 147 206 145 218 142 226 C 146 231 154 231 158 226" stroke-width="3.8"/>
+                  <!-- single-line mouth, slightly uneven -->
+                  <path d="M 122 252 C 138 258 162 258 178 250" stroke-width="3.8"/>
+                  <path d="M 140 266 C 148 269 156 269 162 266" stroke-width="2.6"/>
+                  <!-- neck and shoulder hints -->
+                  <path d="M 122 286 C 120 302 118 316 116 330" stroke-width="4"/>
+                  <path d="M 179 284 C 182 300 184 314 186 330" stroke-width="4"/>
+                  <path d="M 116 330 C 98 334 78 340 62 350" stroke-width="4"/>
+                  <path d="M 186 330 C 204 334 224 341 240 350" stroke-width="4"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="art-frame">
+              <img src="images/davinci.jpg" alt="Leonardo da Vinci's red chalk self-portrait — a finely shaded study of an old man's face, drawn in pencil and chalk" onerror="this.style.display='none'; this.parentNode.classList.add('missing');">
+            </div>
+          </div>
+        </div>
+        <div class="art-pencils" aria-hidden="true">
+          <svg viewBox="0 0 640 40" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(30,13)">
+              <rect x="0" y="0" width="180" height="14" rx="2" fill="var(--hi)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="-16" y="0" width="16" height="14" rx="2" fill="#b9b3a6" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="-28" y="1" width="13" height="12" rx="4" fill="#d98a80" stroke="var(--ink)" stroke-width="2"/>
+              <path d="M 180 0 L 208 7 L 180 14 Z" fill="#d9b98a" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M 200 5 L 208 7 L 200 9 Z" fill="var(--ink)"/>
+            </g>
+            <text x="320" y="26" text-anchor="middle" style="font-family: var(--mono); font-size: 17px; font-weight: 600;" fill="var(--mute)">=</text>
+            <g transform="translate(400,13)">
+              <rect x="0" y="0" width="180" height="14" rx="2" fill="var(--hi)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="-16" y="0" width="16" height="14" rx="2" fill="#b9b3a6" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="-28" y="1" width="13" height="12" rx="4" fill="#d98a80" stroke="var(--ink)" stroke-width="2"/>
+              <path d="M 180 0 L 208 7 L 180 14 Z" fill="#d9b98a" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M 200 5 L 208 7 L 200 9 Z" fill="var(--ink)"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="art-caption">The difference was never the pencil.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- MISSING LAYER -->
+  <section class="band-white" id="missing">
+    <div class="wrap split">
+      <div>
+        <p class="kicker">The Missing Layer</p>
+        <h2>There is no transcript of a conversation that didn't happen.</h2>
+        <p>AI tools can analyze everything your company has captured — emails, documents, call notes, CRM records. They connect the dots you have.</p>
+        <p>But your data has a survivorship bias: it only contains traces of people who engaged. The most decision-changing insight often lives outside the record entirely.</p>
+        <p class="pull">AI connects the dots you have. CoreQuest finds the dots that were <span class="hl">never written down.</span></p>
+      </div>
+      <div>
+        <ul class="missing-list">
+          <li>
+            <strong>The prospect who never clicked</strong>
+            <p>They left because you missed a trust-building step. No click, no record, no transcript. Only a customer interview — or your own sales engineers — can tell you why.</p>
+          </li>
+          <li>
+            <strong>What could get your customer fired</strong>
+            <p>The career stakes and fears that actually drive buying decisions. Nobody writes "I'm scared this project ends my career" in a discoverable document.</p>
+          </li>
+          <li>
+            <strong>What ships today vs. what's on the roadmap</strong>
+            <p>Your people know the difference. Your documents blur it. An AI grounded on blurred truth will confidently market vaporware.</p>
+          </li>
+          <li>
+            <strong>The words your customers actually use</strong>
+            <p>Your internal jargon should never reach your customers. Your customers search, ask AI assistants, and buy in their own language.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACHINE SECTION: THE LOOP -->
+  <section class="machine">
+    <div class="wrap">
+      <p class="kicker">Why This Matters More Now</p>
+      <h2>Generic input, generic output — at machine speed.</h2>
+      <p style="max-width: 680px;">Your AI is only as smart as what your company has written down. Your team's AI tools write fluently from whatever context they're given — feed them your existing self-description and you get polished versions of the same expert-blind messaging that wasn't working before. Faster, cheaper, and just as unclear.</p>
+      <p class="mono-note">Meanwhile, your customers now ask AI assistants the questions they used to type into search engines — and the assistant recommends whichever companies exist in clear, public writing. Insight that stays in your people's heads is invisible to both sides. And the assistants remember: burned customers write the reviews and forum posts they read next. A claim your product can't keep is no longer one customer's disappointment — it's machine-readable trust debt, repeated to every future prospect who asks.</p>
+      <div class="loop" role="list" aria-label="The CoreQuest insight loop">
+        <div class="loop-step" role="listitem">
+          <h3>Extract</h3>
+          <p>The workshop pulls unwritten insight out of your people and your customers.</p>
+        </div>
+        <div class="loop-step" role="listitem">
+          <h3>Write it down</h3>
+          <p>Insight becomes plain, structured, customer-language documents — with contributors named.</p>
+        </div>
+        <div class="loop-step" role="listitem">
+          <h3>Ground your AI</h3>
+          <p>The documents become standing context for every AI tool your team uses.</p>
+        </div>
+        <div class="loop-step" role="listitem">
+          <h3>Get found</h3>
+          <p>Messaging built from it, published clearly, is what AI assistants read when your customers ask who to trust.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="people" id="people">
+    <div class="wrap split">
+      <div>
+        <p class="kicker">Why People Do the Work</p>
+        <h2>AI made your people the <span class="hl">scarce input.</span></h2>
+      </div>
+      <div>
+        <p><strong>Your team doesn't lack insight. Your AI lacks their context.</strong> This workshop isn't remedial — it's extractive. The people in the room are the source, not the problem: the experts whose unwritten knowledge is the one thing no model can generate.</p>
+        <p>Buy the better model — it will keep raising the ceiling. But every competitor buys it too. What can't be bought is the partnership, and partnerships have two sides. Some of your people are <strong>workflow-builders</strong>: they wire AI into processes and become the 100x employees everyone talks about. Others will never build a workflow and are just as critical: they hold the <strong>market truth</strong> — the industry, the customer, the product-market fit that makes a workflow's output worth shipping. A usage dashboard finds the first group automatically; they generate the tokens. It is blind to the second. Rewarding token usage rewards motion. Reward the training wins instead — the contributed insight that demonstrably lands in effective output. CoreQuest exists to make exactly those wins visible, attributable, and worth repeating. You need both kinds of people. Only one of them shows up in the metrics on their own.</p>
+        <p>AI automated the <em>transcription</em> of knowledge. It did nothing to automate the <em>articulation</em> of knowledge — forcing insight into existence that wasn't in expressible form anywhere. That has always been the job of this workshop, and it is now the scarce input to everything your AI produces.</p>
+        <p>This is deliberately a workshop, not an app. The thinking is the product. When your salespeople, engineers, and customer-facing teams do the work of articulating what they know, two things happen: the insight becomes usable by every tool and teammate you have — and the people who did the work become <strong>more</strong> relevant, not less.</p>
+        <p>CoreQuest is designed to carry credit from the start — and honest about how. In the paper kit, attribution is a strong default: the Context Pack template ships with a provenance section and the Moderator's Guide treats credit as part of the method — but a document can't force a company to keep the names in. That holds when leadership decides it should. In <a href="session.html">CoreQuest Session</a>, the team tool, it's stronger than a default: every answer is recorded with its author's name the moment it's written, so provenance is a property of the data — stripping it out would take deliberate effort. Either way, the payoff for keeping names in is real: the person who articulated the trust-gap insight isn't erased by the thousand assets generated from it — they're the named source, the recognized expert who gets consulted when the AI's answer isn't enough. Insight that only ever lived in hallway conversations made no one visible. Insight with your name on it does.</p>
+        <blockquote>Once shared, a contribution can feel invisible. So the method writes names into the record — and asks leadership to keep them there.</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="band-white" id="method">
+    <div class="wrap">
+      <p class="kicker">The Method</p>
+      <h2>Three hours. Three focuses. One fixed sequence.</h2>
+      <p style="max-width: 700px;">A CoreQuest session is like a hundred water-cooler moments compressed into three hours — the cross-functional collisions where breakthroughs actually happen, engineered instead of left to chance. The method is built around <span class="hl-soft">framestorming</span> — finding new frames of reference for familiar knowledge. Your brain is an energy pig: it reverts to pattern-based thinking about anything familiar, which is why ordinary brainstorming about your own product goes nowhere. The sequence defeats the shortcut.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="hour">Hour 1 · Customers</span>
+          <h3>Their world, not yours</h3>
+          <p>Who they are, what they're responsible for, what could get them fired or promoted — and who they trust before they ever talk to you.</p>
+        </div>
+        <div class="method-card">
+          <span class="hour">Hour 2 · Product</span>
+          <h3>Current truth only</h3>
+          <p>What a customer specifically gets for their money. What ships today versus what's on the roadmap. What the honest alternatives are — including doing nothing.</p>
+        </div>
+        <div class="method-card">
+          <span class="hour">Hour 3 · Connections</span>
+          <h3>Where insight surfaces</h3>
+          <p>The bridge between what customers need and what you sell. This is where the messaging, positioning — and the surprises — come from.</p>
+        </div>
+      </div>
+      <div class="method-notes">
+        <p>A moderator with <strong>limited product knowledge</strong> runs the room, asking the "dumb questions" that force simple explanations and asking <em>why</em> until the easy answers run out. Messaging gets drafted afterward, by your creatives, with reflection time — never in the group session.</p>
+        <p>Runs as one three-hour meeting, three one-hour sessions, or a multi-day offsite. Works for cross-functional teams, small teams, and — new — solo founders with an AI moderator.</p>
+        <p>When it works, your customers experience what marketers call a <span class="hl-soft">quick get</span> — messaging so simple and clear they instantly understand your offer, why it matters, and what to do next. The quest is slow and human. The get is instant. And it must be a <strong>fair get</strong>: a quick get built on a claim your product can't keep is just a fast way to teach customers (and future AI tools providing product recommendations) not to trust you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WORKSHOP (FULL PORT) -->
+  <section id="workshop">
+    <div class="wrap">
+      <p class="kicker">The Workshop</p>
+      <h2>The complete program, right here.</h2>
+      <p style="max-width: 700px;">Everything below is the full CoreQuest method — no email wall, no teaser version. Expand any worksheet to read it, or <a href="#downloads">download the whole kit as Markdown</a> to print, adapt, or drop straight into your AI tools. Work the sheets <strong>in order</strong>; the sequence is the method.</p>
+
+      <!-- PART 1 -->
+      <div class="workshop-part">
+        <p class="part-label">Part 1 · Customer Focus</p>
+        <p class="part-intro">Focus your team's attention on your customer before anything else. Even when the information isn't new to everyone, time spent in the details of your customers' world shifts the team's frame of reference for every conversation that follows. New insights come from looking at familiar information in new ways.</p>
+
+        <details class="sheet">
+          <summary><span class="num">01</span>Customer Descriptions</summary>
+          <div class="sheet-body">
+            <p>List and describe your top ten customers. Customers include individuals empowered to make buying decisions as well as individuals who strongly influence sales by recommending or advocating for your product with the ultimate buyer. Define each person's role and level of influence.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">02</span>Customer Responsibilities</summary>
+          <div class="sheet-body">
+            <p>Select a specific customer or related set of customers from your list. What are the top ten job responsibilities they need to fulfill in any given month or quarter?</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">03</span>Customer Tasks</summary>
+          <div class="sheet-body">
+            <p>For that customer, what are ten job tasks they need to accomplish in a typical quarter?</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">04</span>Customer Challenges</summary>
+          <div class="sheet-body">
+            <p>What are the top challenges they need to overcome in any given month or quarter? Run this exercise as: <strong>top things that could get your customer fired or derail their career.</strong> The point is to get everyone focused on specific problems that motivate action.</p>
+            <div class="ai-note"><span class="tag">AI-era note</span>These emotional and career stakes drive buying decisions but almost never appear in any document an AI could learn from. This worksheet is where they finally get written down.</div>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">05</span>Customer Motivations</summary>
+          <div class="sheet-body">
+            <p>What are ten top personal motivations to consider? Run it as: what are the top ten things that could get this person promoted, reduce their job stress, or help them gain status — whatever fits your customer base.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">06</span>Customer Chain of Trust</summary>
+          <div class="sheet-body">
+            <p>Who do your customers trust? Describe the top ten trusted sources of information and recommendations related to your offering, ranked by influence — and why each is trusted. Especially useful for marketing strategy decisions.</p>
+            <div class="ai-note"><span class="tag">AI-era note</span>AI assistants now sit on nearly every customer's chain of trust — often above analysts and review sites. Include them. Then ask the question no dataset can answer: <strong>where in this chain might a prospect lose trust and disengage before ever contacting us?</strong></div>
+          </div>
+        </details>
+      </div>
+
+      <!-- PART 2 -->
+      <div class="workshop-part">
+        <p class="part-label">Part 2 · Product / Service Focus</p>
+        <p class="part-intro">Finally — your product. Why spend time describing what everyone in the room already knows? Because the more familiar you are with something, the harder it is to find fresh ways of describing it. And beware clever, benefits-only marketing: if buyers can't tell what, specifically, you're offering in exchange for their money, email or attention, no amount of inspiration saves you. One more warning, learned the hard way: <strong>don't train customers not to trust you.</strong> A claim can be technically true but functionally untenable — glamorous in the deck, disappointing in week two. Organizations incentivize exactly this when they push product marketing to hit targets fast. The current-truth discipline below is the antidote.</p>
+
+        <details class="sheet">
+          <summary><span class="num">07</span>Product Description</summary>
+          <div class="sheet-body">
+            <p>What is your product or service — that is, what will a customer specifically get in exchange for money (or time, or attention)? List ten concrete things. Deliverables, not benefits language.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">08</span>Product Features</summary>
+          <div class="sheet-body">
+            <p>The top ten features that benefit customers. Product experts must be straightforward here about current product truth versus roadmap — no "marketing ahead of capabilities." Your sales and marketing colleagues are better partners when they know what's real versus aspirational.</p>
+            <div class="ai-note"><span class="tag">AI-era note</span>An AI grounded on a document that blurs shipped and roadmap will confidently market vaporware. It has no instinct for the difference. Keep two clearly labeled lists, and date them.</div>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">09</span>Competitors &amp; Alternatives</summary>
+          <div class="sheet-body">
+            <p>The top alternatives to your product or service — one of which may be "doing nothing." If so, capture the honest reasons a customer would do nothing rather than seek a solution.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- PART 3 -->
+      <div class="workshop-part">
+        <p class="part-label">Part 3 · Connections Focus</p>
+        <p class="part-intro">The groundwork for messaging and strategy: how what you sell connects to what customers want and need. Ideas for campaigns will surface here — capture them in a parking lot and keep going. Allow at least a day of reflection before follow-up discussion; the delay is part of the method.</p>
+
+        <details class="sheet">
+          <summary><span class="num">10</span>Product Connections</summary>
+          <div class="sheet-body">
+            <p>For each major customer want, need, challenge or motivation from Part 1: how does what you sell connect to it? Take this slowly. This is where the insights surface.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">11</span>Product Benefits</summary>
+          <div class="sheet-body">
+            <p>Turn the connections into benefit statements — in the customer's own language — ready for use in marketing materials.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- PART 4 -->
+      <div class="workshop-part">
+        <p class="part-label">Part 4 · Deliverables</p>
+        <p class="part-intro">Not completed in the group session. Give your creatives reflection time with access to subject-matter experts. Note: it typically takes twelve to eighteen months of consistent effort to land a message in a market — refine wording continuously, but don't churn core messaging.</p>
+
+        <details class="sheet">
+          <summary><span class="num">12</span>Messaging &amp; Positioning Framework</summary>
+          <div class="sheet-body">
+            <p>A structured template covering strategy, audience definition, current and future perception, customer challenges, tagline, value propositions at 10–25, 75 and 150 words, messaging pillars and aligned key messages. Full template in the downloadable kit.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">13</span>Positioning Statement &amp; Value Propositions</summary>
+          <div class="sheet-body">
+            <p>The foundation statements: <em>For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better].</em> Plus value propositions at four lengths for use across channels.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">14</span>Customer Journey Friction Assessment</summary>
+          <div class="sheet-body">
+            <p>Walk the full journey — awareness, exploring solutions, evaluating alternatives, justification and approval, acquisition, implementation, expansion, support, upgrades, upselling — and capture the friction at every step. Is psychological safety a factor? How painful is budget approval and vendor onboarding? What are the switching costs?</p>
+            <div class="ai-note"><span class="tag">AI-era update</span>"Exploring solutions" no longer means search rankings alone. Ask ChatGPT, Claude and Gemini your customers' problem-solving questions — verbatim, in their words. Does the AI mention you? Accurately? Currently? Who does it recommend instead, and what have they written down that you haven't? Full worksheet in the AI-Era Addendum.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- PART 5 -->
+      <div class="workshop-part">
+        <p class="part-label">Part 5 · The AI-Era Additions</p>
+        <p class="part-intro">New material that turns workshop insight into AI leverage.</p>
+
+        <details class="sheet">
+          <summary><span class="num">15</span>The AI Context Pack</summary>
+          <div class="sheet-body">
+            <p>A new deliverable: your completed worksheets, assembled into a set of plain-text documents formatted for the AI tools your team uses — a Claude Project, a custom GPT, a sales-enablement tool. Nine sections: who you serve, what keeps them up at night, who they trust, current product truth, real alternatives, why it matters, how to sound like you (and them), where the journey breaks — and <strong>contributors and provenance</strong>, so credit travels with the insight. Once deployed, every email, page and campaign your AI drafts is grounded in your workshop instead of generic filler.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">16</span>The AI Answer Assessment</summary>
+          <div class="sheet-body">
+            <p>The updated Exploring Solutions worksheet. Test your customers' problem-solving questions against the major AI assistants and record: whether you're mentioned, whether the description is accurate and current, who gets recommended instead, and what sources the answers draw on. This exercise is often the moment skeptics lean in — watching an AI recommend a competitor makes the cost of unwritten insight concrete in a way no slide deck can.</p>
+          </div>
+        </details>
+
+        <details class="sheet">
+          <summary><span class="num">17</span>Credit in the Age of AI</summary>
+          <div class="sheet-body">
+            <p>When insight flows into a shared document or an AI tool, the contributor's fingerprints vanish by default — and rational people respond by hoarding what they know. A company full of insight-hoarders will have very fluent, very generic AI. The countermeasure: name contributors, with their specific insights, inside the context pack itself. Provenance survives every derivative use, the pack doubles as a directory of who the real experts are, and the person who did the articulating stays visible. Be honest in the room that the tension is real — people trust a process that acknowledges its trade-offs.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUN IT NOW -->
+  <section class="machine" id="run">
+    <div class="wrap">
+      <p class="kicker">Run It Now</p>
+      <h2>The AI moderator. Copy, paste, begin.</h2>
+      <p style="max-width: 680px;">The ideal CoreQuest moderator was always someone with limited product knowledge who asks the dumb questions — which describes an AI assistant meeting your business for the first time, exactly. For solo founders and small teams, copy this prompt into Claude, ChatGPT or Gemini and run the full sequence today. For cross-functional groups, a human moderator is still the real thing: reading the scowling skeptic in the back of the room is human work.</p>
+      <div class="prompt-shell">
+        <div class="prompt-bar">
+          <span>corequest-ai-moderator-prompt.md</span>
+          <button class="copy-btn" type="button" id="copyPrompt">Copy prompt</button>
+        </div>
+<pre class="prompt" id="promptText">You are the moderator for a CoreQuest Workshop, a structured process for helping teams break through expert blindness and develop simple, compelling messaging for complex products. Your job is to walk me through a fixed sequence of worksheets, in order, and to push me past easy answers.
+
+Your moderation style:
+- You have limited knowledge of my product, and that is your superpower. Ask the "dumb questions" that force simple explanations. If I use jargon, stop me and ask what it means in plain language.
+- Ask "why" repeatedly at key moments. First answers are usually pattern-based and shallow. Dig for the insight underneath.
+- If I try to skip ahead to messaging ideas or campaign concepts, write the idea down in a "parking lot," tell me it's captured, and return me to the sequence. The sequence is the method.
+- Push for specifics. "Enterprise IT leaders" is not a customer description. "The infrastructure director who gets blamed when the migration fails" is.
+- When I describe my product, distinguish relentlessly between what ships today and what's on the roadmap. Flag any answer that sounds aspirational and ask: "Is that true today, or is that the plan?"
+- Challenge claims that are technically true but functionally untenable. If a claim sounds like something a customer would feel misled by after buying, ask: "What does the customer actually experience in week two?" A claim my product can't keep trains customers not to trust me.
+- Stay curious, not agreeable. If my answer seems thin, say so and ask again from a different angle.
+
+The sequence (do not reorder):
+1. Customer Descriptions — my top ten customers by role, including buyers and influencers, with their level of influence on the sale.
+2. Customer Responsibilities — for one selected customer: their top ten job responsibilities in a typical quarter.
+3. Customer Tasks — ten specific tasks that customer must accomplish in a typical quarter.
+4. Customer Challenges — the top challenges they face. Frame it as: what could get this person fired or derail their career?
+5. Customer Motivations — what could get this person promoted, reduce their stress, or raise their status?
+6. Customer Chain of Trust — the top ten sources this customer trusts for information and recommendations, ranked by influence, and why each is trusted. Include AI assistants if customers use them to research solutions. Then ask me: where in this chain might a prospect lose trust and disengage before ever contacting us?
+7. Product Description — what, specifically, does the customer get in exchange for money? Concrete deliverables, not benefits language.
+8. Product Features — top ten features, current truth only. Roadmap items go in a separate, clearly labeled list.
+9. Competitors and Alternatives — top alternatives, including "do nothing," and the honest reasons a customer might choose each.
+10. Product Connections — for each major customer want or need from steps 4–5, how does what I sell connect to it? Take this slowly; this is where insights surface.
+11. Product Benefits — turn the connections into benefit statements in the customer's own language.
+
+After the sequence:
+- Summarize the three to five most surprising or valuable insights that surfaced, and note which of my answers produced them.
+- Then, and only then, help me draft: (a) a positioning statement using this frame: "For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better]." (b) 10-, 25-, 75-, and 150-word value propositions. (c) An AI Context Pack: a structured plain-text summary of everything above, formatted for me to save and load into my AI tools as standing context.
+- Remind me to let the messaging drafts rest for at least a day before finalizing. Reflection time is part of the method.
+
+Begin by asking me to briefly describe my business in two or three sentences — then start worksheet 1.</pre>
+      </div>
+      <p class="mono-note" style="margin-top: 18px;">A note from the method's author: the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself giving quick answers to a section, that discomfort is usually where the insight is. Slow down there.</p>
+      <div style="margin-top: 44px; border-top: 1px solid #35312a; padding-top: 36px;">
+        <h2 style="font-size: clamp(1.4rem, 2.6vw, 2rem);">Running it as a team? Use CoreQuest Session.</h2>
+        <p style="max-width: 680px;">An asynchronous team workshop where credit is enforced by format, not policy: every answer is recorded with its author's name the moment it's written, colleagues build on each other's attributed notes, and the AI Context Pack comes out with provenance assembled automatically. No accounts, no server — the session lives in a file your team owns, and nothing is uploaded anywhere.</p>
+        <p class="mono-note">It also hands your marketing team a head start: a watermarked first-pass positioning draft and an AI drafting prompt built from the session — for marketing to review, edit and approve. Never for general distribution; messaging isn't finished by committee.</p>
+        <p style="margin-top: 20px;"><a class="btn btn-yellow" href="session.html">Open CoreQuest Session</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section class="band-white" id="downloads">
+    <div class="wrap">
+      <p class="kicker">Downloads</p>
+      <h2>The kit, in the format your AI reads best.</h2>
+      <p style="max-width: 700px;">Plain Markdown, deliberately. Print it, adapt it, or drop the files straight into a Claude Project or custom GPT as standing context. Licensed <a href="http://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a> — use it, share it, build on it, with attribution.</p>
+      <div class="dl-grid">
+        <div class="dl-card">
+          <span class="ft">.md · Complete</span>
+          <h3>The Complete Kit</h3>
+          <p>Everything in one file: Moderator's Guide, all worksheets, and the AI-Era Addendum.</p>
+          <a class="btn btn-yellow" href="downloads/corequest-complete-kit.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md</span>
+          <h3>Moderator's Guide</h3>
+          <p>Running the room: participant selection, engagement, timing, the politics — and credit.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-moderators-guide.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md</span>
+          <h3>The Worksheets</h3>
+          <p>The eleven core worksheets with fill-in lists, plus the deliverables templates (worksheets 12–14), ready to print or complete digitally.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-worksheets.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md · New</span>
+          <h3>AI-Era Addendum</h3>
+          <p>The AI Answer Assessment, the AI Context Pack, the AI moderator, and credit in the age of AI.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-ai-era-addendum.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md · New</span>
+          <h3>AI Moderator Prompt</h3>
+          <p>The copy-paste prompt from above, as a file you can keep and reuse.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-ai-moderator-prompt.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md · New</span>
+          <h3>AI Context Pack Template</h3>
+          <p>The nine-section template that turns completed worksheets into standing context for your AI tools.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-ai-context-pack-template.md" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap split">
+      <div>
+        <p class="kicker">About</p>
+        <h2>Field-tested on hundreds of companies before AI made it urgent.</h2>
+      </div>
+      <div>
+        <p>The CoreQuest method was developed by <strong>Teri Patrick</strong> in 1997. Teri and her team helped hundreds of Silicon Valley clients create their first websites, computer-based training and digital marketing assets — and watched most of them struggle to connect with customers, burying real value under technical detail and hoping prospects would figure it out. It didn't go well.</p>
+        <p>The workshops she built to fix it worked so well they became a stand-alone offering. Companies routinely discovered they had missed the boat on value proposition, positioning — even the design of the offer itself — because core insight was sitting, unarticulated, in the heads of their own people and customers.</p>
+        <p>Now retired, Teri makes the complete method available free, because the problem it solves just got bigger: that unarticulated insight is exactly what's missing from the data your AI learns from.</p>
+        <blockquote>
+          "The workshop alone was worth the price we paid for the entire website. It changed the way we work. It made us better."
+          <footer>— a client business owner</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>CoreQuest · A quest for what your AI is missing</span>
+    <span>© Teresa Patrick · Licensed <a href="http://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a> · Deliverables frameworks excluded</span>
+  </div>
+</footer>
+
+<script>
+  const copyBtn = document.getElementById("copyPrompt");
+  const promptText = document.getElementById("promptText");
+  if (copyBtn && promptText) {
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(promptText.textContent);
+        copyBtn.textContent = "Copied ✓";
+      } catch (err) {
+        const range = document.createRange();
+        range.selectNodeContents(promptText);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        copyBtn.textContent = "Select + copy manually";
+      }
+      setTimeout(() => { copyBtn.textContent = "Copy prompt"; }, 2200);
+    });
+  }
+</script>
+
+</body>
+</html>

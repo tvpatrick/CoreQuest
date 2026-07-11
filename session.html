@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoreQuest Session — the async team workshop, with credit built in.</title>
+<meta name="description" content="Run the CoreQuest workshop asynchronously with your team. Every contribution is recorded with its author's name automatically — credit enforced by format, not policy. No accounts, no server: your session lives in a file your team owns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24211b;
+    --paper: #f7f5ef;
+    --card: #ffffff;
+    --hi: #ffe14d;
+    --hi-soft: #fff3b8;
+    --pen: #2743c0;
+    --mute: #6e6a5e;
+    --line: #e3e0d4;
+    --dark-paper: #14120e;
+    --dark-text: #e9e5d9;
+    --dark-mute: #9b968a;
+    --ok: #2e6b3f;
+    --radius: 4px;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Source Serif 4", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.02rem; line-height: 1.6; }
+  a { color: var(--pen); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--pen); outline-offset: 2px; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0 0 0.5em; letter-spacing: -0.01em; }
+  h1 { font-weight: 800; font-size: clamp(1.9rem, 4.5vw, 3rem); }
+  h2 { font-weight: 800; font-size: clamp(1.35rem, 2.6vw, 1.9rem); }
+  h3 { font-weight: 600; font-size: 1.08rem; }
+  p { margin: 0 0 1em; }
+  .kicker { font-family: var(--mono); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin: 0 0 14px; }
+  .hl { background: linear-gradient(104deg, transparent 1%, var(--hi) 2.5%, var(--hi) 97%, transparent 98.5%); padding: 0.05em 0.18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
+
+  .site-header { position: sticky; top: 0; z-index: 40; background: rgba(247,245,239,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; max-width: 1100px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--mute); font-weight: 500; }
+  .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; font-family: var(--mono); font-size: 0.8rem; font-weight: 600; text-decoration: none; border-radius: var(--radius); border: 2px solid var(--ink); cursor: pointer; line-height: 1.2; background: transparent; color: var(--ink); }
+  .btn:hover { background: var(--hi-soft); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #3a352b; border-color: #3a352b; }
+  .btn-yellow { background: var(--hi); }
+  .btn-yellow:hover { background: #ffd91f; }
+  .btn-sm { padding: 6px 10px; font-size: 0.72rem; border-width: 1.5px; }
+
+  section { padding: clamp(30px, 5vw, 54px) 0; }
+  .intro { padding-top: clamp(40px, 7vw, 70px); }
+  .intro .lede { max-width: 640px; font-size: 1.08rem; }
+  .how { font-family: var(--mono); font-size: 0.82rem; color: var(--mute); background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin-top: 18px; }
+  .how strong { color: var(--ink); }
+
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(18px, 3vw, 28px); margin-bottom: 18px; }
+  .panel.attention { border-color: var(--ink); border-left: 5px solid var(--hi); }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-family: var(--mono); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: 10px 12px; font-family: var(--body); font-size: 0.98rem;
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); color: var(--ink);
+  }
+  .field textarea { min-height: 84px; resize: vertical; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .status-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 0.76rem; color: var(--mute); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--hi-soft); border: 1px solid var(--line); border-radius: 20px; padding: 3px 10px; font-family: var(--mono); font-size: 0.72rem; color: var(--ink); }
+  .chip.me { background: var(--hi); }
+
+  details.ws { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; }
+  details.ws[open] { border-color: var(--ink); }
+  details.ws summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 12px; padding: 15px 18px; font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+  details.ws summary::-webkit-details-marker { display: none; }
+  details.ws summary .num { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--mute); min-width: 2.2em; }
+  details.ws summary .count { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: var(--mute); }
+  details.ws summary .count.has { color: var(--ok); font-weight: 600; }
+  .ws-body { padding: 0 18px 18px; }
+  .ws-instr { font-size: 0.92rem; color: var(--mute); margin-bottom: 14px; }
+  .ws-instr .probe { display: block; margin-top: 6px; font-family: var(--mono); font-size: 0.76rem; color: var(--ink); background: var(--hi-soft); padding: 6px 10px; border-radius: var(--radius); }
+
+  .entries { display: grid; gap: 10px; margin-bottom: 14px; }
+  .entry { border: 1px solid var(--line); border-left: 4px solid var(--hi); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 14px; background: var(--paper); }
+  .entry.buildon { margin-left: 22px; border-left-color: var(--pen); }
+  .entry .txt { margin: 0 0 8px; font-size: 0.97rem; white-space: pre-wrap; }
+  .entry .meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: var(--mono); font-size: 0.7rem; color: var(--mute); }
+  .entry .meta .author { color: var(--ink); font-weight: 600; }
+  .entry .meta button { border: 0; background: none; color: var(--pen); font-family: var(--mono); font-size: 0.7rem; cursor: pointer; text-decoration: underline; padding: 0; }
+  .entry .ref { font-family: var(--mono); font-size: 0.68rem; color: var(--pen); margin-bottom: 6px; }
+
+  .adder { border-top: 1px dashed var(--line); padding-top: 14px; }
+  .adder .buildnote { font-family: var(--mono); font-size: 0.72rem; color: var(--pen); margin-bottom: 8px; }
+  .adder .buildnote button { border: 0; background: none; color: var(--mute); cursor: pointer; font-family: var(--mono); font-size: 0.72rem; text-decoration: underline; }
+  .adder .row { display: flex; gap: 10px; align-items: flex-start; }
+  .adder textarea { flex: 1; }
+  .locked-note { font-family: var(--mono); font-size: 0.78rem; color: var(--mute); background: var(--hi-soft); border-radius: var(--radius); padding: 10px 12px; }
+
+  .outputs { background: var(--dark-paper); color: var(--dark-text); border-radius: var(--radius); padding: clamp(20px, 3.5vw, 32px); }
+  .outputs h2 { color: #fff; }
+  .outputs p { color: var(--dark-mute); font-size: 0.95rem; }
+  .outputs .warn { border: 1px solid #4a4436; background: #1c1913; border-left: 4px solid var(--hi); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; font-family: var(--mono); font-size: 0.78rem; color: var(--dark-text); margin: 14px 0 18px; }
+  .out-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .out-grid { grid-template-columns: 1fr; } }
+  .out-card { border: 1px solid #35312a; background: #1c1913; border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .out-card h3 { color: #fff; margin: 0; font-size: 0.98rem; }
+  .out-card p { margin: 0; flex: 1; font-size: 0.85rem; }
+  .out-card .btn { align-self: flex-start; border-color: var(--hi); color: var(--hi); }
+  .out-card .btn:hover { background: rgba(255, 225, 77, 0.12); }
+  .out-card .btn.solid { background: var(--hi); color: var(--ink); }
+  .out-card .btn.solid:hover { background: #ffd91f; }
+
+  .toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 0.78rem; padding: 10px 18px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 60; max-width: 90vw; text-align: center; }
+  .toast.show { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+
+  .site-footer { border-top: 1px solid var(--line); padding: 30px 0 50px; font-family: var(--mono); font-size: 0.76rem; color: var(--mute); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">CoreQuest <span>/ Session</span></a>
+    <div class="header-actions">
+      <button class="btn btn-sm" id="importBtn" type="button">Import session file(s)</button>
+      <button class="btn btn-sm btn-primary" id="exportTopBtn" type="button">Export session</button>
+      <input type="file" id="importInput" accept=".json,application/json" multiple hidden>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <p class="kicker">The Async Team Workshop · No accounts · No server · Nothing uploaded</p>
+    <h1>Every contribution, <span class="hl">credited automatically.</span></h1>
+    <p class="lede">Run the CoreQuest sequence with your team, asynchronously. Each answer is recorded with its author's name and time the moment it's written — credit enforced by format, not by policy. Your session lives in a file your team owns; nothing here is sent anywhere.</p>
+    <div class="how">
+      <strong>How the async flow works:</strong> ① Enter your name and add your answers. ② Export the session file and put it in your team's shared drive (or send it on). ③ The next person imports it, reads everyone's attributed answers — often the best prompt for their own — and adds theirs, building on others where it clicks. ④ When the round feels done, generate the outputs below. Importing several files at once merges parallel rounds automatically.
+    </div>
+  </section>
+
+  <section>
+    <div class="panel attention" id="identityPanel">
+      <p class="kicker">Step 1 · Who's contributing</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="cName">Your name</label>
+          <input id="cName" type="text" autocomplete="name" placeholder="e.g. Maria Chen">
+        </div>
+        <div class="field">
+          <label for="cRole">Your role</label>
+          <input id="cRole" type="text" placeholder="e.g. Sales Engineering">
+        </div>
+      </div>
+      <p style="font-size:0.85rem; color:var(--mute); margin:0;">Your name is attached to every answer you add. That's the point.</p>
+    </div>
+
+    <div class="panel" id="setupPanel">
+      <p class="kicker">Step 2 · Session setup <span id="setupBy" style="text-transform:none; letter-spacing:0;"></span></p>
+      <div class="grid2">
+        <div class="field">
+          <label for="sCompany">Company</label>
+          <input id="sCompany" type="text" placeholder="Company name">
+        </div>
+        <div class="field">
+          <label for="sProduct">Product or service</label>
+          <input id="sProduct" type="text" placeholder="What this session is about">
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label for="sCustomer">Selected customer for worksheets 2–6</label>
+        <input id="sCustomer" type="text" placeholder="Pick one customer from Worksheet 1 once it has answers — be specific">
+      </div>
+    </div>
+
+    <p class="kicker" style="margin-top:26px;">Step 3 · The sequence — worksheets 1–11, in order</p>
+    <p style="font-size:0.92rem; color:var(--mute); max-width:640px;">Read what's already here before adding your own — other people's answers are the best prompt for yours. If a colleague's note sparks something, use <em>Build on this</em> so the chain of credit is recorded too. Worksheets 12–14 (messaging, positioning, journey) are deliberately not here: that work belongs to the marketing team afterward, with reflection time. This tool hands them a head start instead — see the outputs below.</p>
+
+    <div id="worksheets"></div>
+  </section>
+
+  <section>
+    <div class="outputs" id="outputs">
+      <p class="kicker" style="color:var(--dark-mute);">Step 4 · Outputs</p>
+      <h2>Turn the session into working documents.</h2>
+      <div class="warn">MARKETING DRAFTS ARE NOT FOR GENERAL DISTRIBUTION. The messaging first pass below is raw material for the marketing team to review, edit and approve — per the method, messaging is never finished by committee.</div>
+      <div class="out-grid">
+        <div class="out-card">
+          <h3>Session file (.json)</h3>
+          <p>The living record — every answer with its author. Share it on; the next contributor imports it here.</p>
+          <button class="btn solid" type="button" id="exportSessionBtn">Export session</button>
+        </div>
+        <div class="out-card">
+          <h3>AI Context Pack (.md)</h3>
+          <p>The nine-section grounding document for your AI tools, with every insight attributed inline and Section 9 (Contributors &amp; Provenance) assembled automatically.</p>
+          <button class="btn" type="button" id="exportPackBtn">Generate context pack</button>
+        </div>
+        <div class="out-card">
+          <h3>Marketing first pass (.md) — draft</h3>
+          <p>A rough positioning statement and pillar candidates assembled from the session's answers, gaps bracketed. Watermarked for marketing review only.</p>
+          <button class="btn" type="button" id="exportDraftBtn">Generate marketing draft</button>
+        </div>
+        <div class="out-card">
+          <h3>AI drafting prompt</h3>
+          <p>The full session data wrapped in drafting instructions. Marketing pastes it into their own Claude or GPT to produce the messaging grid and value props — then reviews, edits, approves.</p>
+          <button class="btn" type="button" id="copyPromptBtn">Copy prompt</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">© Teresa Patrick · CoreQuest Session · Licensed <a href="http://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a> · Your data never leaves this page except in the files you export.</div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ---------- Worksheet definitions (1–11) ---------- */
+const WORKSHEETS = [
+  { n: 1, title: "Customer Descriptions", instr: "Your top customers by role — buyers and the influencers who champion the sale. Define each person's role and level of influence.", probe: "\u201cEnterprise IT leaders\u201d is not a description. \u201cThe infrastructure director who gets blamed when the migration fails\u201d is.", ph: "One customer role per answer: title/role, what they do, influence on the sale…" },
+  { n: 2, title: "Customer Responsibilities", instr: "For the selected customer: the job responsibilities they must fulfill in a typical month or quarter.", probe: "What are they accountable for even when everything else slips?", ph: "One responsibility per answer…" },
+  { n: 3, title: "Customer Tasks", instr: "Specific tasks the selected customer must accomplish in a typical quarter.", probe: "Tasks are concrete: things with deadlines, meetings, deliverables.", ph: "One task per answer…" },
+  { n: 4, title: "Customer Challenges", instr: "The challenges the selected customer must overcome. Frame it as: what could get this person fired or derail their career?", probe: "These stakes drive buying decisions and appear in no document your AI has ever seen. Write them down here.", ph: "One challenge per answer — include the career stakes…" },
+  { n: 5, title: "Customer Motivations", instr: "Personal motivations: what could get this person promoted, reduce their stress, or raise their status?", probe: "Not what the company wants — what this person wants.", ph: "One motivation per answer…" },
+  { n: 6, title: "Customer Chain of Trust", instr: "Who does the selected customer trust for information and recommendations? Rank by influence, say why each is trusted. Include AI assistants if customers use them to research solutions.", probe: "Then the question no dataset can answer: where in this chain might a prospect lose trust and disengage before ever contacting us?", ph: "One trusted source per answer: who, why trusted, influence (high–low). Or describe a trust gap…" },
+  { n: 7, title: "Product Description", instr: "What, specifically, does a customer get in exchange for money? Concrete deliverables, not benefits language.", probe: "If a stranger read only this worksheet, would they know exactly what they'd receive?", ph: "One specific thing the customer gets per answer…" },
+  { n: 8, title: "Product Features — current truth only", instr: "The features that benefit customers and ship today. Roadmap items are welcome but must be labeled: start those answers with \u201cROADMAP:\u201d.", probe: "Is that true today, or is that the plan? An AI grounded on blurred truth will confidently market vaporware.", ph: "One feature per answer. Prefix ROADMAP: if it isn't shipping yet…" },
+  { n: 9, title: "Competitors & Alternatives", instr: "The top alternatives — including \u201cdoing nothing.\u201d Capture the honest reasons a customer might choose each.", probe: "What would a smart customer say in the alternative's defense?", ph: "One alternative per answer, with the honest case for it…" },
+  { n: 10, title: "Product Connections", instr: "For each major customer want, need, challenge or motivation from worksheets 4–5: how does what we sell connect to it? Take this slowly — this is where insights surface.", probe: "Read worksheets 4 and 5 again before answering. The connection you haven't written down yet is the one that matters.", ph: "One connection per answer: [customer need] ↔ [what we offer], and why it matters…" },
+  { n: 11, title: "Product Benefits", instr: "Turn the connections into benefit statements — in the customer's own language.", probe: "Would the customer recognize their own words here? A benefit that's technically true but functionally untenable trains customers not to trust us.", ph: "One benefit statement per answer, in customer language…" }
+];
+
+/* ---------- State ---------- */
+let session = {
+  schema: "corequest-session/1",
+  company: "",
+  product: "",
+  customer: "",
+  entries: [] // {id, ws, text, author, role, ts, buildsOn}
+};
+let buildTarget = null; // entry id being built on
+let dirty = false;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const uid = () => Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+const me = () => ({ name: $("cName").value.trim(), role: $("cRole").value.trim() });
+const slug = (s) => (s || "corequest").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "corequest";
+
+function toast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+/* ---------- Rendering ---------- */
+function contributors() {
+  const map = new Map();
+  session.entries.forEach(e => {
+    const key = e.author + "|" + (e.role || "");
+    if (!map.has(key)) map.set(key, { name: e.author, role: e.role || "", count: 0 });
+    map.get(key).count++;
+  });
+  return [...map.values()].sort((a, b) => b.count - a.count);
+}
+
+function entryById(id) { return session.entries.find(e => e.id === id); }
+
+function renderWorksheets() {
+  const host = $("worksheets");
+  const openStates = {};
+  host.querySelectorAll("details.ws").forEach(d => { openStates[d.dataset.ws] = d.open; });
+  host.innerHTML = "";
+  WORKSHEETS.forEach(ws => {
+    const entries = session.entries.filter(e => e.ws === ws.n).sort((a, b) => a.ts - b.ts);
+    const d = document.createElement("details");
+    d.className = "ws";
+    d.dataset.ws = ws.n;
+    if (openStates[ws.n]) d.open = true;
+    const countCls = entries.length ? "count has" : "count";
+    d.innerHTML = `
+      <summary><span class="num">${String(ws.n).padStart(2, "0")}</span>${esc(ws.title)}<span class="${countCls}">${entries.length} answer${entries.length === 1 ? "" : "s"}</span></summary>
+      <div class="ws-body">
+        <p class="ws-instr">${esc(ws.instr)}<span class="probe">Moderator's probe: ${esc(ws.probe)}</span></p>
+        <div class="entries">${entries.map(e => {
+          const parent = e.buildsOn ? entryById(e.buildsOn) : null;
+          return `<div class="entry${parent ? " buildon" : ""}">
+            ${parent ? `<div class="ref">↳ builds on ${esc(parent.author)}'s note</div>` : ""}
+            <p class="txt">${esc(e.text)}</p>
+            <div class="meta">
+              <span class="author">${esc(e.author)}${e.role ? " · " + esc(e.role) : ""}</span>
+              <span>${new Date(e.ts).toLocaleDateString()}</span>
+              <button type="button" data-build="${e.id}">Build on this</button>
+              ${isMine(e) ? `<button type="button" data-del="${e.id}">Remove</button>` : ""}
+            </div>
+          </div>`;
+        }).join("") || `<p style="font-family:var(--mono); font-size:0.76rem; color:var(--mute); margin:0;">No answers yet — be the first name on this worksheet.</p>`}</div>
+        <div class="adder" data-adder="${ws.n}">
+          ${buildTarget && entryById(buildTarget) && entryById(buildTarget).ws === ws.n ? `<div class="buildnote">Building on ${esc(entryById(buildTarget).author)}'s note <button type="button" data-cancelbuild="1">cancel</button></div>` : ""}
+          <div class="row">
+            <textarea placeholder="${esc(ws.ph)}" aria-label="Add an answer to ${esc(ws.title)}"></textarea>
+            <button class="btn btn-yellow btn-sm" type="button" data-add="${ws.n}">Add — signed ${esc(me().name || "…")}</button>
+          </div>
+        </div>
+      </div>`;
+    host.appendChild(d);
+  });
+  renderStatus();
+}
+
+function isMine(e) {
+  const m = me();
+  return m.name && e.author === m.name;
+}
+
+function renderStatus() {
+  const who = contributors();
+  const m = me();
+  const bar = who.map(c => `<span class="chip${m.name === c.name ? " me" : ""}">${esc(c.name)}${c.role ? " · " + esc(c.role) : ""} — ${c.count}</span>`).join(" ");
+  let el = $("statusBar");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "statusBar";
+    el.className = "status-bar";
+    el.style.margin = "0 0 16px";
+    $("worksheets").parentNode.insertBefore(el, $("worksheets"));
+  }
+  el.innerHTML = who.length ? `<span>Contributors so far:</span> ${bar}` : "";
+}
+
+function syncSetupFields() {
+  $("sCompany").value = session.company;
+  $("sProduct").value = session.product;
+  $("sCustomer").value = session.customer;
+}
+
+/* ---------- Events ---------- */
+document.addEventListener("click", (ev) => {
+  const t = ev.target;
+  if (t.dataset.add) {
+    const wsN = Number(t.dataset.add);
+    const ta = t.closest(".row").querySelector("textarea");
+    const text = ta.value.trim();
+    const m = me();
+    if (!m.name) { toast("Add your name first (Step 1) — every answer is signed."); $("cName").focus(); return; }
+    if (!text) { toast("Write an answer first."); ta.focus(); return; }
+    const entry = { id: uid(), ws: wsN, text, author: m.name, role: m.role, ts: Date.now() };
+    if (buildTarget && entryById(buildTarget) && entryById(buildTarget).ws === wsN) entry.buildsOn = buildTarget;
+    session.entries.push(entry);
+    buildTarget = null;
+    dirty = true;
+    renderWorksheets();
+    const reopened = document.querySelector(`details.ws[data-ws="${wsN}"]`);
+    if (reopened) { reopened.open = true; reopened.querySelector("textarea").focus(); }
+    toast(`Added — signed ${m.name}.`);
+  }
+  if (t.dataset.build) {
+    buildTarget = t.dataset.build;
+    dirty = true;
+    renderWorksheets();
+    const wsN = entryById(buildTarget).ws;
+    const d = document.querySelector(`details.ws[data-ws="${wsN}"]`);
+    if (d) { d.open = true; d.querySelector("textarea").focus(); }
+  }
+  if (t.dataset.cancelbuild) { buildTarget = null; renderWorksheets(); }
+  if (t.dataset.del) {
+    const e = entryById(t.dataset.del);
+    if (e && confirm(`Remove your answer?\n\n\u201c${e.text.slice(0, 120)}\u2026\u201d`)) {
+      session.entries = session.entries.filter(x => x.id !== t.dataset.del && x.buildsOn !== t.dataset.del);
+      dirty = true;
+      renderWorksheets();
+    }
+  }
+});
+
+["sCompany", "sProduct", "sCustomer"].forEach(id => {
+  $(id).addEventListener("input", () => {
+    session.company = $("sCompany").value.trim();
+    session.product = $("sProduct").value.trim();
+    session.customer = $("sCustomer").value.trim();
+    dirty = true;
+  });
+});
+["cName", "cRole"].forEach(id => $(id).addEventListener("input", renderWorksheets));
+
+window.addEventListener("beforeunload", (e) => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+
+/* ---------- Import / merge ---------- */
+$("importBtn").addEventListener("click", () => $("importInput").click());
+$("importInput").addEventListener("change", async (ev) => {
+  let merged = 0, files = 0;
+  for (const file of ev.target.files) {
+    try {
+      const data = JSON.parse(await file.text());
+      if (data.schema !== "corequest-session/1" || !Array.isArray(data.entries)) throw new Error("format");
+      files++;
+      session.company = session.company || data.company || "";
+      session.product = session.product || data.product || "";
+      session.customer = session.customer || data.customer || "";
+      const have = new Set(session.entries.map(e => e.id));
+      data.entries.forEach(e => {
+        if (e && e.id && !have.has(e.id) && e.text && e.author) { session.entries.push(e); have.add(e.id); merged++; }
+      });
+    } catch (err) {
+      toast(`Couldn't read ${file.name} — is it a CoreQuest session file?`);
+    }
+  }
+  if (files) {
+    dirty = true;
+    syncSetupFields();
+    renderWorksheets();
+    toast(`Imported ${files} file${files === 1 ? "" : "s"}, merged ${merged} new answer${merged === 1 ? "" : "s"}.`);
+  }
+  ev.target.value = "";
+});
+
+/* ---------- Exports ---------- */
+function download(name, text, type) {
+  const blob = new Blob([text], { type: type || "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportSession() {
+  if (!session.entries.length) { toast("Nothing to export yet — add some answers first."); return; }
+  download(`${slug(session.company)}-corequest-session.json`, JSON.stringify(session, null, 2), "application/json");
+  dirty = false;
+  toast("Session exported. Put it in your shared drive and pass it on.");
+}
+$("exportSessionBtn").addEventListener("click", exportSession);
+$("exportTopBtn").addEventListener("click", exportSession);
+
+function att(e) { return `${e.text} *(${e.author}${e.role ? ", " + e.role : ""})*`; }
+function listWs(n) { return session.entries.filter(e => e.ws === n).sort((a, b) => a.ts - b.ts); }
+function bullets(n, fallback) {
+  const es = listWs(n);
+  return es.length ? es.map(e => `- ${att(e)}`).join("\n") : `- ${fallback}`;
+}
+function today() { return new Date().toISOString().slice(0, 10); }
+
+function contextPack() {
+  const c = session.company || "[Company]";
+  const p = session.product || "[Product/Service]";
+  const cust = session.customer || "[selected customer — see Worksheet 1]";
+  const feats = listWs(8);
+  const shipped = feats.filter(e => !/^\s*roadmap\s*:/i.test(e.text));
+  const roadmap = feats.filter(e => /^\s*roadmap\s*:/i.test(e.text));
+  const contribs = contributors();
+  return `# ${c} AI Context Pack
+*Developed in a CoreQuest session. Generated ${today()}. Product: ${p}.*
+*Every insight below is attributed inline — keep the names in. Provenance is the point.*
+
+## 1. Who We Serve
+Primary customer for this pack: **${cust}**
+
+Customer roles and influencers (Worksheet 1):
+${bullets(1, "[not yet captured]")}
+
+Their responsibilities in a typical quarter (Worksheet 2):
+${bullets(2, "[not yet captured]")}
+
+Their tasks (Worksheet 3):
+${bullets(3, "[not yet captured]")}
+
+## 2. What Keeps Them Up at Night
+Challenges — including career stakes (Worksheet 4):
+${bullets(4, "[not yet captured]")}
+
+Motivations — what gets them promoted, calmer, or more respected (Worksheet 5):
+${bullets(5, "[not yet captured]")}
+
+*These stakes rarely appear in any corporate document, which is exactly why the AI needs them stated here.*
+
+## 3. Who They Trust
+Chain of trust, and known trust gaps (Worksheet 6):
+${bullets(6, "[not yet captured]")}
+
+## 4. What We Actually Sell — Current Truth (as of ${today()})
+What the customer specifically gets (Worksheet 7):
+${bullets(7, "[not yet captured]")}
+
+Shipping today (Worksheet 8):
+${shipped.length ? shipped.map(e => `- ${att(e)}`).join("\n") : "- [not yet captured]"}
+
+On the roadmap — NOT yet available. Do not market as current:
+${roadmap.length ? roadmap.map(e => `- ${att(e)}`).join("\n") : "- [none recorded]"}
+
+*This section is a trust control, not just an accuracy control. Update it every release.*
+
+## 5. The Real Alternatives
+Including "doing nothing," with the honest case for each (Worksheet 9):
+${bullets(9, "[not yet captured]")}
+
+## 6. Why It Matters to Them
+Connections between customer needs and what we sell (Worksheet 10):
+${bullets(10, "[not yet captured]")}
+
+Benefit statements in customer language (Worksheet 11):
+${bullets(11, "[not yet captured]")}
+
+## 7. How to Sound Like Us — and Like Them
+*To be completed by the marketing team from the approved messaging deliverables (positioning statement, value propositions, customer-language glossary). See the marketing first pass generated from this session.*
+
+## 8. Where the Journey Breaks
+*To be completed from the Customer Journey Friction Assessment (Worksheet 14) and the AI Answer Assessment — see the CoreQuest kit.*
+
+## 9. Contributors and Provenance
+This context pack was developed in a CoreQuest session. Contributors:
+
+${contribs.length ? contribs.map(x => `- **${x.name}**${x.role ? " (" + x.role + ")" : ""} — ${x.count} contribution${x.count === 1 ? "" : "s"}`).join("\n") : "- [no contributors recorded]"}
+
+Per-insight attribution appears inline throughout this pack. Questions about any insight go to its named contributor — they are the expert behind it. When this pack is updated, credit the person whose new insight changed it.
+`;
+}
+
+$("exportPackBtn").addEventListener("click", () => {
+  if (!session.entries.length) { toast("The pack needs answers first — work the worksheets above."); return; }
+  download(`${slug(session.company)}-ai-context-pack.md`, contextPack(), "text/markdown");
+  toast("Context pack generated — attribution included, Section 9 assembled.");
+});
+
+/* ---------- Marketing first pass ---------- */
+function firstOr(n, fallback) {
+  const es = listWs(n);
+  return es.length ? es[0].text : fallback;
+}
+function topN(n, count) {
+  return listWs(n).slice(0, count);
+}
+
+function marketingDraft() {
+  const c = session.company || "[Company]";
+  const p = session.product || "[Product/Service]";
+  const cust = session.customer || "[customer — select in session setup]";
+  const challenge = firstOr(4, "[top challenge — Worksheet 4 is empty]");
+  const motivation = firstOr(5, "[top motivation — Worksheet 5 is empty]");
+  const what = firstOr(7, "[what it is — Worksheet 7 is empty]");
+  const alt = firstOr(9, "[top alternative — Worksheet 9 is empty]");
+  const benefit = firstOr(11, "[top benefit — Worksheet 11 is empty]");
+  const pillars = topN(11, 3);
+  return `# ${c} — Messaging First Pass
+**DRAFT — FOR MARKETING TEAM ONLY. Review, edit and approve before any distribution.**
+*Assembled automatically from a CoreQuest session on ${today()}. This is raw material, not messaging. Per the method: give the drafting real reflection time — at least a day — and do not finish messaging by committee.*
+
+## Draft positioning statement (fill the brackets, then rewrite it properly)
+
+> For ${cust}, who need to overcome ${challenge}, and want ${motivation}, **${p}** is ${what} that [what it does — one plain clause]. Unlike ${alt}, ${p} [how/why it is a better solution — draw on: ${benefit}].
+
+## Pillar candidates (top benefit statements from the session)
+${pillars.length ? pillars.map((e, i) => `${i + 1}. ${att(e)}`).join("\n") : "1. [Worksheet 11 is empty — no pillar candidates yet]"}
+
+## Tenability check — do this before anything ships
+For every claim above, ask: is it not just technically true but functionally tenable — will the customer's week-two experience match it? A quick get built on an untenable claim is just a fast way to teach customers not to trust us. Cross-check every claim against Section 4 of the context pack (current truth vs. roadmap).
+
+## Still needed from the marketing team
+- Value propositions at 10 / 25 / 75 / 150 words
+- Messaging grid: pillars → key messages
+- Customer-language glossary (their words in, our jargon out)
+- Review of the AI-drafted grid if you use the AI drafting prompt — the AI drafts, you approve
+
+## Credit
+Built from contributions by: ${contributors().map(x => x.name + (x.role ? " (" + x.role + ")" : "")).join(", ") || "[none recorded]"}. Keep these names attached as the messaging develops — ideas change shape as they move; the credit shouldn't fall off.
+`;
+}
+
+$("exportDraftBtn").addEventListener("click", () => {
+  if (!session.entries.length) { toast("The draft needs answers first — work the worksheets above."); return; }
+  download(`${slug(session.company)}-messaging-first-pass-DRAFT.md`, marketingDraft(), "text/markdown");
+  toast("Marketing draft generated — for marketing review only.");
+});
+
+/* ---------- AI drafting prompt ---------- */
+function draftingPrompt() {
+  return `You are drafting messaging deliverables for the marketing team at ${session.company || "[Company]"}. Below is the attributed raw material from a CoreQuest workshop session about ${session.product || "[Product/Service]"}. Selected customer: ${session.customer || "[not set]"}.
+
+Your task — produce a DRAFT messaging package for marketing review (it will be edited and approved by humans before any use):
+1. A positioning statement: "For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better]."
+2. Value propositions at 10, 25, 75 and 150 words, written from the customer's point of view, in the customer's language as it appears in the material below — not internal jargon.
+3. A messaging grid: 3 pillars (short phrases for the highest-priority value), each with 2–3 key messages.
+4. A tenability audit: flag any claim in your own draft that is technically true but functionally untenable — anything a customer might feel misled by in week two. Cross-check claims against the "current truth vs roadmap" material; never present roadmap items as current.
+
+Rules: use only the material below — do not invent features, customers, or claims. Where the material is thin, say so and mark the gap in [brackets] rather than filling it with plausible-sounding filler. Keep contributor attributions visible in your working notes so the team knows whose insight drove what.
+
+=== SESSION MATERIAL ===
+${WORKSHEETS.map(ws => {
+  const es = listWs(ws.n);
+  return `\n[Worksheet ${ws.n}: ${ws.title}]\n${es.length ? es.map(e => `- ${e.text} (${e.author}${e.role ? ", " + e.role : ""})`).join("\n") : "- (no answers)"}`;
+}).join("\n")}
+=== END SESSION MATERIAL ===
+
+Label your entire output: "DRAFT — for marketing team review, edit and approval. Not for distribution."`;
+}
+
+$("copyPromptBtn").addEventListener("click", async () => {
+  if (!session.entries.length) { toast("Add answers first — the prompt embeds the session material."); return; }
+  try {
+    await navigator.clipboard.writeText(draftingPrompt());
+    toast("Prompt copied — paste it into your team's AI. Marketing reviews before anything ships.");
+  } catch (err) {
+    download(`${slug(session.company)}-ai-drafting-prompt.txt`, draftingPrompt(), "text/plain");
+    toast("Clipboard blocked — downloaded the prompt as a file instead.");
+  }
+});
+
+/* ---------- Init ---------- */
+renderWorksheets();
+</script>
+
+</body>
+</html>
