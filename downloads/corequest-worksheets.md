@@ -102,7 +102,7 @@ Selected customer (from Worksheet 1): ______________
 
 Who do your customers trust? For a given customer describe the top ten trusted sources of information and recommendations for products or services related to your offering. Why are they trusted? This exercise is especially useful for marketing strategy decisions.
 
-**AI-era note:** AI assistants (ChatGPT, Claude, Gemini, Copilot) now sit on nearly every customer's chain of trust — often above analysts and review sites. Include them, and see the AI-Era Addendum's "Exploring Solutions" worksheet for how to assess what those assistants say about you. Also ask: **where in this chain might a prospect lose trust and disengage before ever contacting us?** There is no transcript of a conversation that didn't happen — this worksheet is the only place that insight gets captured.
+**Note:** AI assistants (ChatGPT, Claude, Gemini, Copilot) sit on nearly every customer's chain of trust — often above analysts and review sites. Include them; Worksheet 14's Exploring Solutions step covers how to assess what those assistants actually say about you. Also ask: **where in this chain might a prospect lose trust and disengage before ever contacting us?** There is no transcript of a conversation that didn't happen — this worksheet is the only place that insight gets captured.
 
 Selected customer (from Worksheet 1): ______________
 
@@ -152,7 +152,7 @@ Product or Service Name: ______________
 
 For your product or service offering, what are the top ten features that benefit customers?
 
-**AI-era note:** be relentless about current truth vs roadmap here. Features that ship today go on this list. Roadmap items go on a separate, clearly labeled list. An AI grounded on a document that blurs the two will confidently market vaporware.
+**Note:** be relentless about current truth vs roadmap here. Features that ship today go on this list. Roadmap items go on a separate, clearly labeled list. An AI grounded on a document that blurs the two will confidently market vaporware.
 
 Product or Service Name: ______________
 
@@ -228,9 +228,9 @@ Product or Service Name: ______________
 
 ---
 
-# Part 4: Marketing Deliverables
+# Part 4: Deliverables
 
-This section provides templates for defining and sharing messaging and positioning statements. These documents help ensure consistency across your customer communication channels.
+This section turns your completed worksheets into two working deliverables: messaging and positioning statements for your human channels, and the AI Context Pack (Worksheet 15) that grounds your AI tools. They're built from the same insight; create both.
 
 The goal of every deliverable here is what marketers call a **quick get**: messaging so simple and clear that customers instantly understand your offer, why it matters to them, and what to do next. The quest is slow and human. The get is instant.
 
@@ -273,6 +273,8 @@ But a quick get must also be a **fair get**. Test every claim: is it not just te
 **Key Messages (aligned to each Pillar).** Key messages are short statements that describe the value you deliver aligned with the Pillar phrase.
 
 ## Worksheet 13: Positioning Statement and Value Propositions
+
+*Adapted from a framework developed by Hank Barnes.*
 ### Positioning Statement
 
 A positioning statement should succinctly express your business/product/service strategy — from your customers' point of view. Primarily used internally to ensure public-facing content and messaging is strategically aligned. A useful framework:
@@ -301,10 +303,20 @@ How easy is it for customers to access your service? How easy is it to acquire, 
 - Awareness program 2 — Description, assessment:
 - Awareness program 3 — Description, assessment:
 
-**Exploring Solutions.** How readily can potential customers find your product/service in response to a relevant problem-solving query? *(AI-era update: your customers now ask AI assistants these questions, not just search engines. Use the AI Answer Assessment in the AI-Era Addendum — test your customers' problem-solving questions against ChatGPT, Claude and Gemini and record whether, and how accurately, you appear.)*
-- Problem-solving query — search result rank / AI answer assessment:
-- Problem-solving query — search result rank / AI answer assessment:
-- Problem-solving query — search result rank / AI answer assessment:
+**Exploring Solutions.** How readily can potential customers find your product/service in response to a relevant problem-solving question? Your customers ask these questions of AI assistants as well as search engines, so test both. For each question — phrased verbatim in your customers' words, drawn from the Challenges worksheet — check your search ranking, then ask the major AI assistants (ChatGPT, Claude, Gemini, Copilot) and record:
+
+- Does the assistant mention your company/product? If yes: is the description accurate, and is it current truth or two years stale?
+- Who does it recommend instead? That's your real competitive set for this question.
+- What sources do the answers appear to draw on — reviews, docs, comparison articles, your own site?
+- Does it surface past disappointment ("users report that…")? That's trust debt coming due.
+
+Repeat for at least five questions; patterns matter more than any single answer. Then discuss: where you're absent, what content would need to exist — publicly, in plain customer language — for that to change? Where you're described inaccurately, what is the assistant reading, and what should it be reading instead?
+
+*Moderator's note: this exercise is often the moment skeptics lean in. Watching an AI recommend a competitor makes the cost of unwritten insight concrete in a way no slide deck can.*
+
+- Problem-solving question — search rank / assistant answers / gaps:
+- Problem-solving question — search rank / assistant answers / gaps:
+- Problem-solving question — search rank / assistant answers / gaps:
 
 **Evaluating Alternatives.** How readily can potential customers get the information they need to evaluate your product/service?
 - Evaluation option — description and assessment:
@@ -345,3 +357,30 @@ How easy is it for customers to access your service? How easy is it to acquire, 
 - Upselling opportunity — notes on friction points:
 - Upselling opportunity — notes on friction points:
 - Upselling opportunity — notes on friction points:
+
+
+## Worksheet 15: The AI Context Pack
+
+The second deliverable, and for many teams the more consequential one: your completed worksheets, assembled into a set of plain-text documents formatted for the AI tools your team uses — a Claude Project, a custom GPT, a sales-enablement tool. Once deployed, every email, landing page and campaign your AI drafts is grounded in the workshop's insight instead of generic filler. The completed worksheets have always made excellent onboarding material for new colleagues; this is the same onboarding, for your AI.
+
+**Format principles:**
+
+- **Plain text or Markdown.** No slides, no design. AI tools ingest simple structured text best.
+- **Customer language, not internal language.** Use the exact words that surfaced in the Customer worksheets.
+- **Current truth, flagged and dated.** Distinguish shipped from roadmap explicitly. Date the pack; stale context produces confident errors.
+- **Attribution stays in.** Name the contributors next to their insights. Provenance is the point.
+- **Density beats volume.** Keep each section to one page or less.
+
+**The nine sections** (a fill-in template is included in this kit as the AI Context Pack Template):
+
+1. **Who We Serve** — from Customer Descriptions, Responsibilities, Tasks
+2. **What Keeps Them Up at Night** — from Challenges and Motivations
+3. **Who They Trust** — from Chain of Trust, including known trust gaps
+4. **What We Actually Sell — Current Truth** — from Product Description and Features, shipped and roadmap clearly split and dated
+5. **The Real Alternatives** — from Competitors and Alternatives, including "doing nothing"
+6. **Why It Matters to Them** — from Connections and Benefits
+7. **How to Sound Like Us — and Like Them** — positioning, value propositions, and the customer-language glossary from Worksheets 12–13
+8. **Where the Journey Breaks** — from the Friction Assessment above
+9. **Contributors and Provenance** — who contributed which insight; questions about any section go to its named contributor
+
+**Deploying the pack:** drop it into your team's shared AI workspace so every team member's AI drafts start from the same ground truth. Review quarterly and after every release — an outdated Section 4 is worse than no Section 4. When the pack changes, credit the person whose new insight changed it. (If your team used CoreQuest Session, the pack is generated for you, attribution included.)

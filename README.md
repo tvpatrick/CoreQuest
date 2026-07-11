@@ -26,8 +26,7 @@ CoreQuest is the disciplined process for getting it out — with credit for the 
 |---|---|
 | [Complete Kit](downloads/corequest-complete-kit.md) | Everything in one file |
 | [Moderator's Guide](downloads/corequest-moderators-guide.md) | Running the workshop: participants, engagement, timing, credit |
-| [The Worksheets](downloads/corequest-worksheets.md) | Fourteen worksheets: eleven core sheets plus the deliverables templates |
-| [AI-Era Addendum](downloads/corequest-ai-era-addendum.md) | The AI Answer Assessment, the AI Context Pack, the AI moderator, trust debt, and credit in the age of AI |
+| [The Worksheets](downloads/corequest-worksheets.md) | Fifteen worksheets: the eleven core sheets plus the deliverables, including the AI Context Pack |
 | [AI Moderator Prompt](downloads/corequest-ai-moderator-prompt.md) | The copy-paste prompt |
 | [AI Context Pack Template](downloads/corequest-ai-context-pack-template.md) | Nine-section template for grounding your AI tools |
 

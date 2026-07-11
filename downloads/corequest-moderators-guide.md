@@ -23,9 +23,17 @@ The CoreQuest workshop brings cross-functional teams together to walk through yo
 
 While designed to improve marketing, insights from past workshops have shaped product decisions, improved operations, shortened sales cycles and more. When you equip your people with insight, they use that insight to solve problems across your org.
 
-**In the AI era, there is one more outcome:** the completed worksheets become the grounding context for your company's AI tools. Your AI is only as smart as what your company has written down. This workshop is how you write down what only your people know. (See the AI-Era Addendum.)
+Every insight the workshop surfaces now has a second, compounding destination: written down clearly, it becomes standing context for your company's AI tools — the difference between AI output that sounds like everyone and AI output that knows your business. Your AI is only as smart as what your company has written down. This workshop is how you write down what only your people know.
 
 ## How to Use the Worksheets
+
+There are three ways to run CoreQuest, and they share the same worksheets and the same sequence:
+
+1. **Cross-functional workshop** — the full version: a human moderator, the right people in one room (or one call), described below.
+2. **Solo or small team with an AI moderator** — copy the AI Moderator Prompt (included in this kit) into Claude, ChatGPT, or Gemini and run the full sequence in a sitting. The ideal moderator was always someone with limited product knowledge who asks the dumb questions — which describes an AI meeting your business for the first time, exactly.
+3. **Asynchronous team session** — use CoreQuest Session, the free tool at corequest.net: every answer is recorded with its author's name automatically, colleagues build on each other's attributed notes, and the deliverables are generated with provenance assembled. See "The Asynchronous Option" below.
+
+Whichever mode you choose, the destination is the same: completed worksheets that become both your messaging foundation and the AI Context Pack that grounds your company's AI tools.
 
 ### Cross-Functional Workshop
 
@@ -57,7 +65,7 @@ While cross-functional workshops are ideal, individuals and small teams can foll
 
 Think of the process as taking your product or service apart, examining it from different angles and then reassembling it. You are pushing your brain to make new connections; to spark new insights from familiar knowledge.
 
-**AI option:** individuals and small teams can also run the full sequence with an AI assistant acting as moderator. See the AI Moderator Prompt in this kit.
+The AI Moderator Prompt in this kit runs this same process with an AI assistant asking the questions — the fastest way for one or two people to complete the full sequence.
 
 ### The Asynchronous Option: Automatic Credit
 
@@ -78,7 +86,7 @@ Cross-functional calendars are hard to align, quiet experts get talked over in r
 **Goals.** The first step in planning for a workshop is defining your goals. A common request from nervous managers is a list of outcomes you expect from the workshop. The challenge and the magic of this process is that you don't know in advance what insights will surface nor what the impact will be. A reasonable list of expected outcomes for a CoreQuest Workshop includes:
 
 - **Messaging direction.** Focusing on the connections between key customer and product truths will equip creatives to build more effective messaging and design assets.
-- **Specific deliverables built from workshop insights.** Examples include a messaging grid, value proposition statements, content marketing strategy documents — and, in the AI era, an AI Context Pack that grounds your company's AI tools in the workshop's insight.
+- **Specific deliverables built from workshop insights.** Examples include a messaging grid, value proposition statements, content marketing strategy documents, and the AI Context Pack that grounds your company's AI tools in the workshop's insight.
 - **Improved alignment** between marketing and its stakeholders and partners in sales and product development.
 - **Improved onboarding** of marketing partners and new hires. The completed worksheets make excellent onboarding material to help new marketing colleagues develop better marketing content and campaigns. They are onboarding material for your AI, too.
 
@@ -101,7 +109,13 @@ You can present something in marketing materials that is technically true but fu
 
 A note for leadership: organizations incentivize this behavior when they push product marketing managers to hit specific marketing targets quickly. If the number is due this quarter and the honest claim won't move it, someone will find a technically-true claim that will. The moderator should watch for this pressure in the room — the "real vs. aspirational" discipline in the Product worksheets exists to counteract it, but the incentive problem is above the workshop's pay grade. It belongs to whoever sets the targets.
 
-In the AI era the interest rate on trust debt has gone up, in both directions. First, an AI grounded on hype-adjacent context will generate technically-true-but-untenable claims at scale, in every channel, with perfect confidence. Second, the disappointment no longer stays private: burned customers write the reviews and forum posts that AI assistants read when the next prospect asks who to trust. The trust you spend is now recorded, aggregated, and repeated back — by the very sources on your customer's chain of trust.
+The interest rate on trust debt has gone up, in both directions. On the way out: an AI grounded on hype-adjacent context doesn't know a claim is untenable — it will generate that claim at scale, in every channel, with perfect confidence. On the way back: the disappointment no longer stays private. Burned customers write the reviews, forum posts, and comparison threads that AI assistants read when the next prospect asks who to trust. A misleading claim used to cost you one customer and their immediate circle; now it becomes part of your machine-readable reputation, repeated to every future customer by the very sources at the top of their chain of trust.
+
+Three practical controls:
+
+- **In Exploring Solutions (Worksheet 14):** when you test what AI assistants say about you, note whether they surface past disappointment — "users report that…" language is trust debt coming due.
+- **In the AI Context Pack (Worksheet 15):** the shipped-vs-roadmap split is a trust control, not just an accuracy control. Treat it that way in review, and update it every release.
+- **For leadership:** if the quarter's number can only be hit with a claim the product can't keep, the workshop can surface that tension — but only leadership can remove the incentive. That conversation belongs above the workshop.
 
 ### Selecting Workshop Participants
 
@@ -137,6 +151,14 @@ Some ideas for credit sharing:
 - Find ways to credit contributors when discussing or distributing key workshop deliverables like the messaging grid or value proposition worksheet
 - Acknowledge that a complete accounting of who contributed what is impossible and provide opportunities for people to step forward to give themselves or others credit if they wish to do so
 
-**In the AI era, credit matters more, not less.** When insight flows into a shared context document or an AI tool, the contributor's fingerprints vanish by default — and rational people respond by hoarding what they know. A company full of insight-hoarders will have very fluent, very generic AI. The countermeasure: credit travels *inside the artifacts that feed the AI*. Name contributors, with their specific insights, inside the AI Context Pack itself. Provenance then survives every derivative use, and the pack doubles as a directory of who the real expert is. The person who articulates an insight becomes the named source — more visible, not less relevant.
+**Credit matters more when AI is involved, not less.** When insight flows into a shared context document or an AI tool, the contributor's fingerprints vanish by default — and rational people respond by hoarding what they know. A company full of insight-hoarders will have very fluent, very generic AI. The countermeasure: credit travels *inside the artifacts that feed the AI*:
 
-**And where possible, make attribution automatic rather than procedural.** A named credit that depends on someone remembering to record it is fragile. The Asynchronous Option (above) makes attribution structural: contributions arrive pre-stamped with names by the platform they're made in, and the AI is instructed to carry those names into the context pack. Honesty requires saying that no method can *force* an organization to honor credit — but a record where names are attached at the moment of contribution is far harder to quietly strip than a memory of who said what in a meeting. See the AI-Era Addendum for the full discussion.
+- Name contributors, with their specific insights, inside the AI Context Pack itself (Worksheet 15, Section 9). Provenance then survives every derivative use.
+- When the AI's answer isn't enough — and it regularly won't be — the pack doubles as a directory of who the real expert is. The person who articulated the insight becomes the named source, consulted by name. That is more visible than knowledge that only ever lived in hallway conversations.
+- When the pack is updated, announce whose insight drove the update.
+
+**Two kinds of contributors — and what to measure.** Organizations are learning to spot their workflow-builders: the people who wire AI into processes and become the celebrated 100x employees. Usage dashboards find them automatically — they generate the tokens. But partnerships have a second side no dashboard sees: the people who hold the market truth, the customer truth, the product-market-fit truth that makes a workflow's output worth shipping. Some of them will never build a workflow. Their contribution arrives as insight, not throughput — and if the only rewarded behavior is tool fluency, they will rationally disengage. Measure accordingly: rewarding token usage rewards motion. Reward the training wins — contributed insight that demonstrably lands in effective output. The workshop, the Context Pack's provenance section, and the Session tool exist to make exactly those wins visible and attributable. You need both kinds of people. Only one of them shows up in the metrics on their own.
+
+Be honest with contributors about the tension: in some organizations, for some people, sharing hard-won knowledge genuinely does reduce individual leverage. A process that builds attribution in from the start doesn't eliminate that risk — but it is meaningfully better than the default, which is silent absorption. Say that out loud in the room. People trust a process that acknowledges its trade-offs.
+
+**And where possible, make attribution automatic rather than procedural.** A named credit that depends on someone remembering to record it is fragile. The Asynchronous Option (above) makes attribution structural: contributions arrive pre-stamped with names by the platform they're made in, and the AI is instructed to carry those names into the context pack. Honesty requires saying that no method can *force* an organization to honor credit — but a record where names are attached at the moment of contribution is far harder to quietly strip than a memory of who said what in a meeting.

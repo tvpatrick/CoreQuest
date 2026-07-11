@@ -2,7 +2,7 @@
 
 ## The CoreQuest Workshop
 
-The CoreQuest Workshop — including the Moderator's Guide, the Worksheets, the AI-Era Addendum, the AI Moderator Prompt, the AI Context Pack Template, the website text, and the CoreQuest Session tool — is:
+The CoreQuest Workshop — including the Moderator's Guide, the Worksheets, the AI Moderator Prompt, the AI Context Pack Template, the website text, and the CoreQuest Session tool — is:
 
 **© Teresa Patrick, licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).**
 

@@ -53,7 +53,7 @@
   }
 
   h1, h2, h3, h4 { font-family: var(--display); line-height: 1.05; margin: 0 0 0.6em; letter-spacing: -0.01em; }
-  h1 { font-weight: 800; font-size: clamp(2.5rem, 6.2vw, 4.6rem); }
+  h1 { font-weight: 800; font-size: clamp(2.1rem, 4.2vw, 3.4rem); }
   h2 { font-weight: 800; font-size: clamp(1.8rem, 3.6vw, 2.8rem); }
   h3 { font-weight: 600; font-size: clamp(1.2rem, 2vw, 1.45rem); }
   p { margin: 0 0 1em; }
@@ -109,9 +109,10 @@
     font-size: 1.15rem;
     color: var(--ink);
     text-decoration: none;
+    white-space: nowrap;
   }
   .brand span { color: var(--mute); font-weight: 500; }
-  .nav { display: flex; flex-wrap: wrap; gap: clamp(12px, 2.4vw, 26px); font-family: var(--mono); font-size: 0.8rem; }
+  .nav { display: flex; flex-wrap: wrap; gap: clamp(10px, 1.8vw, 22px); font-family: var(--mono); font-size: 0.76rem; }
   .nav a { color: var(--ink); text-decoration: none; }
   .nav a:hover { color: var(--pen); text-decoration: underline; }
 
@@ -138,14 +139,14 @@
   .btn-yellow:hover { background: #ffd91f; }
 
   /* Hero */
-  .hero { padding: clamp(64px, 11vw, 140px) 0 clamp(56px, 8vw, 100px); }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr); gap: clamp(30px, 5vw, 64px); align-items: center; }
+  .hero { padding: clamp(36px, 5.5vw, 72px) 0 clamp(40px, 6vw, 72px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.85fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-  .hero h1 { max-width: 18ch; margin-bottom: 28px; }
+  .hero h1 { max-width: 21ch; margin-bottom: 20px; }
   .hero .lede {
-    max-width: 620px;
-    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
-    margin-bottom: 34px;
+    max-width: 600px;
+    font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+    margin-bottom: 24px;
   }
   .hero-art { margin: 0; }
   .hero-art svg { width: 100%; height: auto; display: block; }
@@ -157,7 +158,7 @@
   .art-frame.missing::after { content: "Add your purchased da Vinci image as images/davinci.jpg — see the note in the images folder."; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 18px; font-family: var(--mono); font-size: 0.7rem; color: var(--mute); }
   .art-pencils { margin-top: 14px; }
   .art-caption { text-align: center; font-style: italic; font-size: 1.02rem; margin-top: 10px; color: var(--ink); }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
   .hero-note { font-family: var(--mono); font-size: 0.8rem; color: var(--mute); }
 
   /* Missing layer */
@@ -679,7 +680,7 @@
           <summary><span class="num">04</span>Customer Challenges</summary>
           <div class="sheet-body">
             <p>What are the top challenges they need to overcome in any given month or quarter? Run this exercise as: <strong>top things that could get your customer fired or derail their career.</strong> The point is to get everyone focused on specific problems that motivate action.</p>
-            <div class="ai-note"><span class="tag">AI-era note</span>These emotional and career stakes drive buying decisions but almost never appear in any document an AI could learn from. This worksheet is where they finally get written down.</div>
+            <div class="ai-note"><span class="tag">Why this matters</span>These emotional and career stakes drive buying decisions but almost never appear in any document an AI could learn from. This worksheet is where they finally get written down.</div>
           </div>
         </details>
 
@@ -694,7 +695,7 @@
           <summary><span class="num">06</span>Customer Chain of Trust</summary>
           <div class="sheet-body">
             <p>Who do your customers trust? Describe the top ten trusted sources of information and recommendations related to your offering, ranked by influence — and why each is trusted. Especially useful for marketing strategy decisions.</p>
-            <div class="ai-note"><span class="tag">AI-era note</span>AI assistants now sit on nearly every customer's chain of trust — often above analysts and review sites. Include them. Then ask the question no dataset can answer: <strong>where in this chain might a prospect lose trust and disengage before ever contacting us?</strong></div>
+            <div class="ai-note"><span class="tag">Why this matters</span>AI assistants now sit on nearly every customer's chain of trust — often above analysts and review sites. Include them. Then ask the question no dataset can answer: <strong>where in this chain might a prospect lose trust and disengage before ever contacting us?</strong></div>
           </div>
         </details>
       </div>
@@ -715,7 +716,7 @@
           <summary><span class="num">08</span>Product Features</summary>
           <div class="sheet-body">
             <p>The top ten features that benefit customers. Product experts must be straightforward here about current product truth versus roadmap — no "marketing ahead of capabilities." Your sales and marketing colleagues are better partners when they know what's real versus aspirational.</p>
-            <div class="ai-note"><span class="tag">AI-era note</span>An AI grounded on a document that blurs shipped and roadmap will confidently market vaporware. It has no instinct for the difference. Keep two clearly labeled lists, and date them.</div>
+            <div class="ai-note"><span class="tag">Why this matters</span>An AI grounded on a document that blurs shipped and roadmap will confidently market vaporware. It has no instinct for the difference. Keep two clearly labeled lists, and date them.</div>
           </div>
         </details>
 
@@ -750,7 +751,7 @@
       <!-- PART 4 -->
       <div class="workshop-part">
         <p class="part-label">Part 4 · Deliverables</p>
-        <p class="part-intro">Not completed in the group session. Give your creatives reflection time with access to subject-matter experts. Note: it typically takes twelve to eighteen months of consistent effort to land a message in a market — refine wording continuously, but don't churn core messaging.</p>
+        <p class="part-intro">The worksheets above become two deliverables built from the same insight: messaging and positioning for your human channels, and the AI Context Pack that grounds your AI tools. Create both. Messaging is not completed in the group session — give your creatives reflection time with access to subject-matter experts. Note: it typically takes twelve to eighteen months of consistent effort to land a message in a market — refine wording continuously, but don't churn core messaging.</p>
 
         <details class="sheet">
           <summary><span class="num">12</span>Messaging &amp; Positioning Framework</summary>
@@ -762,7 +763,7 @@
         <details class="sheet">
           <summary><span class="num">13</span>Positioning Statement &amp; Value Propositions</summary>
           <div class="sheet-body">
-            <p>The foundation statements: <em>For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better].</em> Plus value propositions at four lengths for use across channels.</p>
+            <p>The foundation statements: <em>For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better].</em> Plus value propositions at four lengths for use across channels. <span style="color: var(--mute); font-size: 0.9rem;">Adapted from a framework developed by Hank Barnes.</span></p>
           </div>
         </details>
 
@@ -770,37 +771,18 @@
           <summary><span class="num">14</span>Customer Journey Friction Assessment</summary>
           <div class="sheet-body">
             <p>Walk the full journey — awareness, exploring solutions, evaluating alternatives, justification and approval, acquisition, implementation, expansion, support, upgrades, upselling — and capture the friction at every step. Is psychological safety a factor? How painful is budget approval and vendor onboarding? What are the switching costs?</p>
-            <div class="ai-note"><span class="tag">AI-era update</span>"Exploring solutions" no longer means search rankings alone. Ask ChatGPT, Claude and Gemini your customers' problem-solving questions — verbatim, in their words. Does the AI mention you? Accurately? Currently? Who does it recommend instead, and what have they written down that you haven't? Full worksheet in the AI-Era Addendum.</div>
+            <div class="ai-note"><span class="tag">Test it</span>"Exploring solutions" means AI assistants as well as search. Ask ChatGPT, Claude and Gemini your customers' problem-solving questions — verbatim, in their words. Does the AI mention you? Accurately? Currently? Who does it recommend instead, and what have they written down that you haven't? Watching an AI recommend a competitor is often the moment skeptics lean in.</div>
           </div>
         </details>
-      </div>
-
-      <!-- PART 5 -->
-      <div class="workshop-part">
-        <p class="part-label">Part 5 · The AI-Era Additions</p>
-        <p class="part-intro">New material that turns workshop insight into AI leverage.</p>
 
         <details class="sheet">
           <summary><span class="num">15</span>The AI Context Pack</summary>
           <div class="sheet-body">
-            <p>A new deliverable: your completed worksheets, assembled into a set of plain-text documents formatted for the AI tools your team uses — a Claude Project, a custom GPT, a sales-enablement tool. Nine sections: who you serve, what keeps them up at night, who they trust, current product truth, real alternatives, why it matters, how to sound like you (and them), where the journey breaks — and <strong>contributors and provenance</strong>, so credit travels with the insight. Once deployed, every email, page and campaign your AI drafts is grounded in your workshop instead of generic filler.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">16</span>The AI Answer Assessment</summary>
-          <div class="sheet-body">
-            <p>The updated Exploring Solutions worksheet. Test your customers' problem-solving questions against the major AI assistants and record: whether you're mentioned, whether the description is accurate and current, who gets recommended instead, and what sources the answers draw on. This exercise is often the moment skeptics lean in — watching an AI recommend a competitor makes the cost of unwritten insight concrete in a way no slide deck can.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">17</span>Credit in the Age of AI</summary>
-          <div class="sheet-body">
-            <p>When insight flows into a shared document or an AI tool, the contributor's fingerprints vanish by default — and rational people respond by hoarding what they know. A company full of insight-hoarders will have very fluent, very generic AI. The countermeasure: name contributors, with their specific insights, inside the context pack itself. Provenance survives every derivative use, the pack doubles as a directory of who the real experts are, and the person who did the articulating stays visible. Be honest in the room that the tension is real — people trust a process that acknowledges its trade-offs.</p>
+            <p>The deliverable that grounds your AI: your completed worksheets, assembled into a set of plain-text documents formatted for the AI tools your team uses — a Claude Project, a custom GPT, a sales-enablement tool. Nine sections: who you serve, what keeps them up at night, who they trust, current product truth, real alternatives, why it matters, how to sound like you (and them), where the journey breaks — and <strong>contributors and provenance</strong>, so credit travels with the insight. Once deployed, every email, page and campaign your AI drafts is grounded in your workshop instead of generic filler.</p>
           </div>
         </details>
       </div>
+
     </div>
   </section>
 
@@ -846,7 +828,7 @@ After the sequence:
 
 Begin by asking me to briefly describe my business in two or three sentences — then start worksheet 1.</pre>
       </div>
-      <p class="mono-note" style="margin-top: 18px;">A note from the method's author: the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself giving quick answers to a section, that discomfort is usually where the insight is. Slow down there.</p>
+      <p class="mono-note" style="margin-top: 18px;">A note from the method's author: the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself speeding through a section, filling in the blanks with superficial answers, slow down there. That discomfort is often where new, actionable insight is ready to emerge.</p>
       <div style="margin-top: 44px; border-top: 1px solid #35312a; padding-top: 36px;">
         <h2 style="font-size: clamp(1.4rem, 2.6vw, 2rem);">Running it as a team? Use CoreQuest Session.</h2>
         <p style="max-width: 680px;">An asynchronous team workshop where credit is enforced by format, not policy: every answer is recorded with its author's name the moment it's written, colleagues build on each other's attributed notes, and the AI Context Pack comes out with provenance assembled automatically. No accounts, no server — the session lives in a file your team owns, and nothing is uploaded anywhere.</p>
@@ -866,7 +848,7 @@ Begin by asking me to briefly describe my business in two or three sentences —
         <div class="dl-card">
           <span class="ft">.md · Complete</span>
           <h3>The Complete Kit</h3>
-          <p>Everything in one file: Moderator's Guide, all worksheets, and the AI-Era Addendum.</p>
+          <p>Everything in one file: the Moderator's Guide, all fifteen worksheets, the AI moderator prompt, and the Context Pack template.</p>
           <a class="btn btn-yellow" href="downloads/corequest-complete-kit.md" download>Download</a>
         </div>
         <div class="dl-card">
@@ -878,23 +860,17 @@ Begin by asking me to briefly describe my business in two or three sentences —
         <div class="dl-card">
           <span class="ft">.md</span>
           <h3>The Worksheets</h3>
-          <p>The eleven core worksheets with fill-in lists, plus the deliverables templates (worksheets 12–14), ready to print or complete digitally.</p>
+          <p>The eleven core worksheets with fill-in lists, plus the deliverables templates (worksheets 12–15), ready to print or complete digitally.</p>
           <a class="btn btn-ghost" href="downloads/corequest-worksheets.md" download>Download</a>
         </div>
         <div class="dl-card">
-          <span class="ft">.md · New</span>
-          <h3>AI-Era Addendum</h3>
-          <p>The AI Answer Assessment, the AI Context Pack, the AI moderator, and credit in the age of AI.</p>
-          <a class="btn btn-ghost" href="downloads/corequest-ai-era-addendum.md" download>Download</a>
-        </div>
-        <div class="dl-card">
-          <span class="ft">.md · New</span>
+          <span class="ft">.md</span>
           <h3>AI Moderator Prompt</h3>
           <p>The copy-paste prompt from above, as a file you can keep and reuse.</p>
           <a class="btn btn-ghost" href="downloads/corequest-ai-moderator-prompt.md" download>Download</a>
         </div>
         <div class="dl-card">
-          <span class="ft">.md · New</span>
+          <span class="ft">.md</span>
           <h3>AI Context Pack Template</h3>
           <p>The nine-section template that turns completed worksheets into standing context for your AI tools.</p>
           <a class="btn btn-ghost" href="downloads/corequest-ai-context-pack-template.md" download>Download</a>
