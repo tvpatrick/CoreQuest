@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CoreQuest — Supercharge your AI marketing with human insight.</title>
-<meta name="description" content="Supercharge your AI marketing with human insight. CoreQuest is a free, structured workshop for capturing what your team knows but no document ever records — the trust gaps, career stakes, and product truth your AI can't see — and turning it into the context that makes every AI output dramatically better. CC BY-SA licensed.">
+<title>CoreQuest — Better AI output, faster — powered by human insight.</title>
+<meta name="description" content="Better AI output, faster — powered by human insight. CoreQuest is a free, structured workshop for capturing what your team knows but no document ever records — the trust gaps, product truths, and hidden buyer motives your AI can't see — and turning it into the context that makes every AI output better. CC BY-SA licensed.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -170,16 +170,6 @@
   }
   .band-white { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
-  .missing-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-  .missing-list li {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-left: 5px solid var(--hi);
-    padding: 16px 20px;
-    border-radius: var(--radius);
-  }
-  .missing-list strong { font-family: var(--display); font-weight: 600; display: block; margin-bottom: 2px; }
-  .missing-list li p { margin: 0; font-size: 0.98rem; color: var(--mute); }
 
   .pull {
     font-family: var(--display);
@@ -200,46 +190,9 @@
   .machine p { color: var(--dark-text); }
   .machine .mono-note { font-family: var(--mono); font-size: 0.92rem; color: var(--dark-mute); }
 
-  .loop {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-top: 44px;
-    counter-reset: loopstep;
-  }
-  .loop-step {
-    border: 1px solid #35312a;
-    border-radius: var(--radius);
-    padding: 20px 18px 18px;
-    background: #1c1913;
-    position: relative;
-  }
-  .loop-step::before {
-    counter-increment: loopstep;
-    content: counter(loopstep, decimal-leading-zero);
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--hi);
-    display: block;
-    margin-bottom: 10px;
-  }
-  .loop-step h3 { color: #fff; font-size: 1.02rem; margin-bottom: 6px; }
-  .loop-step p { font-size: 0.9rem; color: var(--dark-mute); margin: 0; }
-
-  /* People section */
-  .people blockquote {
-    margin: 30px 0 0;
-    padding: 0;
-    border: 0;
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
-    line-height: 1.3;
-    max-width: 26ch;
-  }
 
   /* Method strip */
-  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  .method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 34px; }
   .method-card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -258,8 +211,6 @@
   }
   .method-card p { font-size: 0.98rem; margin: 0; }
 
-  .method-notes { margin-top: 28px; max-width: 760px; }
-  .method-notes p { font-size: 1rem; }
 
   /* Workshop accordions */
   .workshop-part { margin-bottom: 44px; }
@@ -433,7 +384,6 @@
     <a class="brand" href="#top">CoreQuest <span>/ The Workshop</span></a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#missing">The Missing Layer</a>
-      <a href="#people">Why People</a>
       <a href="#method">The Method</a>
       <a href="#workshop">The Workshop</a>
       <a href="#run">Run It Now</a>
@@ -451,9 +401,9 @@
     <div class="wrap hero-grid">
       <div>
         <p class="kicker">The CoreQuest Workshop · Free · CC BY-SA</p>
-        <h1>Supercharge your AI marketing with <span class="hl">human&nbsp;insight.</span></h1>
+        <h1>Better AI output, faster — powered by <span class="hl">human&nbsp;insight.</span></h1>
         <p class="lede" style="margin-bottom: 14px;">Most people can use a pencil. Da Vinci could use a pencil. The difference is not the tool. It's the intelligence behind the tool.</p>
-        <p class="lede">Human insight and ingenuity matter as much or more than ever in an AI-enhanced world. CoreQuest is a structured process for capturing what your team knows but no document ever records — the trust gaps, career stakes, and product truth your AI can't see. Every AI output after it gets better.</p>
+        <p class="lede">Human insight and ingenuity matter more than ever in an AI-enhanced world. CoreQuest is a free, structured process for capturing what your team knows but no document ever records — the trust gaps, product truths, and hidden buyer motives your AI can't see. Every AI output after it gets better.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#run">Run it now with an AI moderator</a>
           <a class="btn btn-ghost" href="#downloads">Download the workshop kit</a>
@@ -534,110 +484,52 @@
 
   <!-- MISSING LAYER -->
   <section class="band-white" id="missing">
-    <div class="wrap split">
-      <div>
-        <p class="kicker">The Missing Layer</p>
-        <h2>There is no transcript of a conversation that didn't happen.</h2>
-        <p>AI tools can analyze everything your company has captured — emails, documents, call notes, CRM records. They connect the dots you have.</p>
-        <p>But your data has a survivorship bias: it only contains traces of people who engaged. The most decision-changing insight often lives outside the record entirely.</p>
-        <p class="pull">AI connects the dots you have. CoreQuest finds the dots that were <span class="hl">never written down.</span></p>
-      </div>
-      <div>
-        <ul class="missing-list">
-          <li>
-            <strong>The prospect who never clicked</strong>
-            <p>They left because you missed a trust-building step. No click, no record, no transcript. Only a customer interview — or your own sales engineers — can tell you why.</p>
-          </li>
-          <li>
-            <strong>What could get your customer fired</strong>
-            <p>The career stakes and fears that actually drive buying decisions. Nobody writes "I'm scared this project ends my career" in a discoverable document.</p>
-          </li>
-          <li>
-            <strong>What ships today vs. what's on the roadmap</strong>
-            <p>Your people know the difference. Your documents blur it. An AI grounded on blurred truth will confidently market vaporware.</p>
-          </li>
-          <li>
-            <strong>The words your customers actually use</strong>
-            <p>Your internal jargon should never reach your customers. Your customers search, ask AI assistants, and buy in their own language.</p>
-          </li>
-        </ul>
-      </div>
+    <div class="wrap">
+      <p class="kicker">The Missing Layer</p>
+      <h2>Your AI doesn't know your business. Your people&nbsp;do.</h2>
+      <p style="max-width: 700px;">AI tools can analyze everything your company has captured — emails, documents, call notes, CRM records — but they can only connect the dots you have.</p>
+      <p style="max-width: 700px;">Your most insightful people understand what AI is missing: the reason some potential customers never get in touch in the first place, or why an important prospect said "no" last week.</p>
+      <p class="pull">AI connects the dots you have. CoreQuest finds the dots that were <span class="hl">never written down.</span></p>
     </div>
   </section>
 
   <!-- MACHINE SECTION: THE LOOP -->
   <section class="machine">
     <div class="wrap">
-      <p class="kicker">Why This Matters More Now</p>
-      <h2>Generic input, generic output — at machine speed.</h2>
-      <p style="max-width: 680px;">Your AI is only as smart as what your company has written down. Your team's AI tools write fluently from whatever context they're given — feed them your existing self-description and you get polished versions of the same expert-blind messaging that wasn't working before. Faster, cheaper, and just as unclear.</p>
-      <p class="mono-note">Meanwhile, your customers now ask AI assistants the questions they used to type into search engines — and the assistant recommends whichever companies exist in clear, public writing. Insight that stays in your people's heads is invisible to both sides. And the assistants remember: burned customers write the reviews and forum posts they read next. A claim your product can't keep is no longer one customer's disappointment — it's machine-readable trust debt, repeated to every future prospect who asks.</p>
-      <div class="loop" role="list" aria-label="The CoreQuest insight loop">
-        <div class="loop-step" role="listitem">
-          <h3>Extract</h3>
-          <p>The workshop pulls unwritten insight out of your people and your customers.</p>
-        </div>
-        <div class="loop-step" role="listitem">
-          <h3>Write it down</h3>
-          <p>Insight becomes plain, structured, customer-language documents — with contributors named.</p>
-        </div>
-        <div class="loop-step" role="listitem">
-          <h3>Ground your AI</h3>
-          <p>The documents become standing context for every AI tool your team uses.</p>
-        </div>
-        <div class="loop-step" role="listitem">
-          <h3>Get found</h3>
-          <p>Messaging built from it, published clearly, is what AI assistants read when your customers ask who to trust.</p>
-        </div>
-      </div>
+      <p class="kicker">From SEO to AI Visibility</p>
+      <h2>Clear, focused writing matters — even if your primary audience is AI.</h2>
+      <p style="max-width: 680px;">Your customers are asking AI to recommend products and services. AI is reading your content and reviews for relevance and trustworthiness — and recommending whichever companies it can clearly understand. Search engine optimization got you ranked. AI visibility gets you recommended, and it rewards clear, insight-rich writing over keyword volume.</p>
     </div>
   </section>
 
-  <!-- PEOPLE -->
-  <section class="people" id="people">
-    <div class="wrap split">
-      <div>
-        <p class="kicker">Why People Do the Work</p>
-        <h2>AI made your people the <span class="hl">scarce input.</span></h2>
-      </div>
-      <div>
-        <p><strong>Your team doesn't lack insight. Your AI lacks their context.</strong> This workshop isn't remedial — it's extractive. The people in the room are the source, not the problem: the experts whose unwritten knowledge is the one thing no model can generate.</p>
-        <p>Buy the better model — it will keep raising the ceiling. But every competitor buys it too. What can't be bought is the partnership, and partnerships have two sides. Some of your people are <strong>workflow-builders</strong>: they wire AI into processes and become the 100x employees everyone talks about. Others will never build a workflow and are just as critical: they hold the <strong>market truth</strong> — the industry, the customer, the product-market fit that makes a workflow's output worth shipping. A usage dashboard finds the first group automatically; they generate the tokens. It is blind to the second. Rewarding token usage rewards motion. Reward the training wins instead — the contributed insight that demonstrably lands in effective output. CoreQuest exists to make exactly those wins visible, attributable, and worth repeating. You need both kinds of people. Only one of them shows up in the metrics on their own.</p>
-        <p>AI automated the <em>transcription</em> of knowledge. It did nothing to automate the <em>articulation</em> of knowledge — forcing insight into existence that wasn't in expressible form anywhere. That has always been the job of this workshop, and it is now the scarce input to everything your AI produces.</p>
-        <p>This is deliberately a workshop, not an app. The thinking is the product. When your salespeople, engineers, and customer-facing teams do the work of articulating what they know, two things happen: the insight becomes usable by every tool and teammate you have — and the people who did the work become <strong>more</strong> relevant, not less.</p>
-        <p>CoreQuest is designed to carry credit from the start — and honest about how. In the paper kit, attribution is a strong default: the Context Pack template ships with a provenance section and the Moderator's Guide treats credit as part of the method — but a document can't force a company to keep the names in. That holds when leadership decides it should. In <a href="session.html">CoreQuest Session</a>, the team tool, it's stronger than a default: every answer is recorded with its author's name the moment it's written, so provenance is a property of the data — stripping it out would take deliberate effort. Either way, the payoff for keeping names in is real: the person who articulated the trust-gap insight isn't erased by the thousand assets generated from it — they're the named source, the recognized expert who gets consulted when the AI's answer isn't enough. Insight that only ever lived in hallway conversations made no one visible. Insight with your name on it does.</p>
-        <blockquote>Once shared, a contribution can feel invisible. So the method writes names into the record — and asks leadership to keep them there.</blockquote>
-      </div>
-    </div>
-  </section>
 
   <!-- METHOD -->
   <section class="band-white" id="method">
     <div class="wrap">
       <p class="kicker">The Method</p>
-      <h2>Three hours. Three focuses. One fixed sequence.</h2>
-      <p style="max-width: 700px;">A CoreQuest session is like a hundred water-cooler moments compressed into three hours — the cross-functional collisions where breakthroughs actually happen, engineered instead of left to chance. The method is built around <span class="hl-soft">framestorming</span> — finding new frames of reference for familiar knowledge. Your brain is an energy pig: it reverts to pattern-based thinking about anything familiar, which is why ordinary brainstorming about your own product goes nowhere. The sequence defeats the shortcut.</p>
+      <h2>Customer truths. Product truths. The competitive landscape. The Chain of Trust.</h2>
+      <p style="font-size: 1.15rem; max-width: 700px;"><strong>Everyone on the same page.</strong></p>
       <div class="method-grid">
         <div class="method-card">
-          <span class="hour">Hour 1 · Customers</span>
-          <h3>Their world, not yours</h3>
-          <p>Who they are, what they're responsible for, what could get them fired or promoted — and who they trust before they ever talk to you.</p>
+          <span class="hour">Step 1</span>
+          <h3>Explore your offering through your buyers' eyes</h3>
+          <p>The CoreQuest method walks your team through your product or offering from your customers' point of view — as represented by the sales and service providers who work with them every day.</p>
         </div>
         <div class="method-card">
-          <span class="hour">Hour 2 · Product</span>
-          <h3>Current truth only</h3>
-          <p>What a customer specifically gets for their money. What ships today versus what's on the roadmap. What the honest alternatives are — including doing nothing.</p>
+          <span class="hour">Step 2</span>
+          <h3>Go deep on product and service truths</h3>
+          <p>A detailed discussion about your product and service offerings, led by the folks who build and deliver them — grounded in what is true today, not what is coming or what the business would like customers to believe is true.</p>
         </div>
         <div class="method-card">
-          <span class="hour">Hour 3 · Connections</span>
-          <h3>Where insight surfaces</h3>
-          <p>The bridge between what customers need and what you sell. This is where the messaging, positioning — and the surprises — come from.</p>
+          <span class="hour">Step 3</span>
+          <h3>The competitive landscape</h3>
+          <p>Who else offers competing solutions? What unique value do they offer? How compelling is the option to do nothing?</p>
         </div>
-      </div>
-      <div class="method-notes">
-        <p>A moderator with <strong>limited product knowledge</strong> runs the room, asking the "dumb questions" that force simple explanations and asking <em>why</em> until the easy answers run out. Messaging gets drafted afterward, by your creatives, with reflection time — never in the group session.</p>
-        <p>Runs as one three-hour meeting, three one-hour sessions, or a multi-day offsite. Works for cross-functional teams, small teams, and — new — solo founders with an AI moderator.</p>
-        <p>When it works, your customers experience what marketers call a <span class="hl-soft">quick get</span> — messaging so simple and clear they instantly understand your offer, why it matters, and what to do next. The quest is slow and human. The get is instant. And it must be a <strong>fair get</strong>: a quick get built on a claim your product can't keep is just a fast way to teach customers (and future AI tools providing product recommendations) not to trust you.</p>
+        <div class="method-card">
+          <span class="hour">Step 4</span>
+          <h3>Connect the dots</h3>
+          <p>Not a messaging exercise — an essential prerequisite to human or AI-assisted messaging. This is where your team surfaces the most compelling connections between what your customers want and need, what your business offers, and how your offer stands out from competitors.</p>
+        </div>
       </div>
     </div>
   </section>
