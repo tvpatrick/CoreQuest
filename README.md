@@ -29,6 +29,7 @@ CoreQuest is the disciplined process for getting it out — with credit for the 
 | [The Worksheets](downloads/corequest-worksheets.md) | Fifteen worksheets: the eleven core sheets plus the deliverables, including the AI Context Pack |
 | [AI Moderator Prompt](downloads/corequest-ai-moderator-prompt.md) | The copy-paste prompt |
 | [AI Context Pack Template](downloads/corequest-ai-context-pack-template.md) | Nine-section template for grounding your AI tools |
+| [Session Guide](downloads/corequest-session-guide.md) | Team workflows for CoreQuest Session, including the AI merge prompt for parallel sessions |
 
 All files are plain Markdown, deliberately — print them, adapt them, or drop them straight into a Claude Project or custom GPT as standing context.
 

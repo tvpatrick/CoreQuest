@@ -600,7 +600,7 @@ Begin by asking me to briefly describe my business in two or three sentences —
 
 ---
 
-**A note from the method's author:** The AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself speeding through a section, filling in the blanks with superficial answers, slow down there. That discomfort is often where new, actionable insight is ready to emerge.
+**A note from the method's author:** the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself speeding through a section, filling in the blanks with superficial answers, slow down. That is a sign you may have settled into pattern-based thinking. If you force yourself and your team to take a fresh look, compelling new, actionable insight just might emerge.
 
 
 ---
