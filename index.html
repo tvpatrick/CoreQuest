@@ -212,8 +212,8 @@
   .method-card p { font-size: 0.98rem; margin: 0; }
 
 
-  /* Workshop accordions */
-  .workshop-part { margin-bottom: 44px; }
+  /* Workshop syllabus */
+  .workshop-part { margin-bottom: 0; }
   .part-label {
     font-family: var(--mono);
     font-size: 0.78rem;
@@ -223,61 +223,29 @@
     color: var(--pen);
     margin-bottom: 8px;
   }
-  .part-intro { max-width: 740px; color: var(--mute); }
-
-  details.sheet {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    margin-top: 12px;
+  .part-intro { color: var(--mute); margin: 0; }
+  .syllabus {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
   }
-  details.sheet[open] { border-color: var(--ink); }
-  details.sheet summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    padding: 18px 22px;
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 1.08rem;
+  .ws-list { list-style: none; margin: 0; padding: 0; }
+  .ws-list li {
+    display: grid;
+    grid-template-columns: 2.8em minmax(0, 1fr);
+    gap: 4px 0;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--line);
   }
-  details.sheet summary::-webkit-details-marker { display: none; }
-  details.sheet summary .num {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--mute);
-    min-width: 2.6em;
-  }
-  details.sheet summary::after {
-    content: "+";
-    margin-left: auto;
-    font-family: var(--mono);
-    font-weight: 600;
-    color: var(--mute);
-  }
-  details.sheet[open] summary::after { content: "–"; }
-  .sheet-body { padding: 0 22px 22px; padding-left: calc(22px + 2.6em + 14px); }
-  .sheet-body p { font-size: 0.99rem; }
-  .sheet-body .ai-note {
-    border-left: 4px solid var(--hi);
-    background: var(--hi-soft);
-    padding: 12px 16px;
-    border-radius: 0 var(--radius) var(--radius) 0;
-    font-size: 0.94rem;
-    margin-top: 14px;
-  }
-  .sheet-body .ai-note .tag {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-  }
+  .ws-list li:last-child { border-bottom: 0; }
+  .ws-list .num { font-family: var(--mono); font-size: 0.76rem; font-weight: 600; color: var(--mute); padding-top: 3px; }
+  .ws-list .name { font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+  .ws-list .desc { grid-column: 2; font-size: 0.92rem; color: var(--mute); margin: 0; }
+  .ws-list .credit { grid-column: 2; font-family: var(--mono); font-size: 0.68rem; color: var(--mute); margin: 2px 0 0; }
+  @media (max-width: 860px) { .syllabus { grid-template-columns: 1fr; } }
 
   /* Prompt block */
   .prompt-shell {
@@ -538,140 +506,58 @@
   <section id="workshop">
     <div class="wrap">
       <p class="kicker">The Workshop</p>
-      <h2>The complete program, right here.</h2>
-      <p style="max-width: 700px;">Everything below is the full CoreQuest method — no email wall, no teaser version. Expand any worksheet to read it, or <a href="#downloads">download the whole kit as Markdown</a> to print, adapt, or drop straight into your AI tools. Work the sheets <strong>in order</strong>; the sequence is the method.</p>
+      <h2>The Worksheets</h2>
+      <p style="max-width: 700px;">Fifteen worksheets in four parts. Full instructions for every worksheet ship in the <a href="#downloads">free downloadable kit</a>.</p>
 
-      <!-- PART 1 -->
-      <div class="workshop-part">
-        <p class="part-label">Part 1 · Customer Focus</p>
-        <p class="part-intro">Focus your team's attention on your customer before anything else. Even when the information isn't new to everyone, time spent in the details of your customers' world shifts the team's frame of reference for every conversation that follows. New insights come from looking at familiar information in new ways.</p>
-
-        <details class="sheet">
-          <summary><span class="num">01</span>Customer Descriptions</summary>
-          <div class="sheet-body">
-            <p>List and describe your top ten customers. Customers include individuals empowered to make buying decisions as well as individuals who strongly influence sales by recommending or advocating for your product with the ultimate buyer. Define each person's role and level of influence.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">02</span>Customer Responsibilities</summary>
-          <div class="sheet-body">
-            <p>Select a specific customer or related set of customers from your list. What are the top ten job responsibilities they need to fulfill in any given month or quarter?</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">03</span>Customer Tasks</summary>
-          <div class="sheet-body">
-            <p>For that customer, what are ten job tasks they need to accomplish in a typical quarter?</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">04</span>Customer Challenges</summary>
-          <div class="sheet-body">
-            <p>What are the top challenges they need to overcome in any given month or quarter? Run this exercise as: <strong>top things that could get your customer fired or derail their career.</strong> The point is to get everyone focused on specific problems that motivate action.</p>
-            <div class="ai-note"><span class="tag">Why this matters</span>These emotional and career stakes drive buying decisions but almost never appear in any document an AI could learn from. This worksheet is where they finally get written down.</div>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">05</span>Customer Motivations</summary>
-          <div class="sheet-body">
-            <p>What are ten top personal motivations to consider? Run it as: what are the top ten things that could get this person promoted, reduce their job stress, or help them gain status — whatever fits your customer base.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">06</span>Customer Chain of Trust</summary>
-          <div class="sheet-body">
-            <p>Who do your customers trust? Describe the top ten trusted sources of information and recommendations related to your offering, ranked by influence — and why each is trusted. Especially useful for marketing strategy decisions.</p>
-            <div class="ai-note"><span class="tag">Why this matters</span>AI assistants now sit on nearly every customer's chain of trust — often above analysts and review sites. Include them. Then ask the question no dataset can answer: <strong>where in this chain might a prospect lose trust and disengage before ever contacting us?</strong></div>
-          </div>
-        </details>
+      <div class="syllabus workshop-part">
+        <div>
+          <p class="part-label">Part 1 · Customer Focus</p>
+          <p class="part-intro">Walk your team through the buying decision from your customers' point of view. This shifts the frame for every conversation that follows.</p>
+        </div>
+        <ol class="ws-list">
+          <li><span class="num">01</span><span class="name">Customer Descriptions</span><p class="desc">Your top ten customers and influencers — and their role in the buying process.</p></li>
+          <li><span class="num">02</span><span class="name">Customer Responsibilities</span><p class="desc">What your chosen customer is accountable for in a typical quarter.</p></li>
+          <li><span class="num">03</span><span class="name">Customer Tasks</span><p class="desc">Ten concrete tasks on their plate this quarter.</p></li>
+          <li><span class="num">04</span><span class="name">Customer Challenges</span><p class="desc">What could get this person fired or derail their career — the stakes that drive buying decisions.</p></li>
+          <li><span class="num">05</span><span class="name">Customer Motivations</span><p class="desc">What could get them promoted or more respected.</p></li>
+          <li><span class="num">06</span><span class="name">Customer Chain of Trust</span><p class="desc">Who they listen to before they ever talk to you — including AI assistants — and where trust breaks.</p></li>
+        </ol>
       </div>
 
-      <!-- PART 2 -->
-      <div class="workshop-part">
-        <p class="part-label">Part 2 · Product / Service Focus</p>
-        <p class="part-intro">Finally — your product. Why spend time describing what everyone in the room already knows? Because the more familiar you are with something, the harder it is to find fresh ways of describing it. And beware clever, benefits-only marketing: if buyers can't tell what, specifically, you're offering in exchange for their money, email or attention, no amount of inspiration saves you. One more warning, learned the hard way: <strong>don't train customers not to trust you.</strong> A claim can be technically true but functionally untenable — glamorous in the deck, disappointing in week two. Organizations incentivize exactly this when they push product marketing to hit targets fast. The current-truth discipline below is the antidote.</p>
-
-        <details class="sheet">
-          <summary><span class="num">07</span>Product Description</summary>
-          <div class="sheet-body">
-            <p>What is your product or service — that is, what will a customer specifically get in exchange for money (or time, or attention)? List ten concrete things. Deliverables, not benefits language.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">08</span>Product Features</summary>
-          <div class="sheet-body">
-            <p>The top ten features that benefit customers. Product experts must be straightforward here about current product truth versus roadmap — no "marketing ahead of capabilities." Your sales and marketing colleagues are better partners when they know what's real versus aspirational.</p>
-            <div class="ai-note"><span class="tag">Why this matters</span>An AI grounded on a document that blurs shipped and roadmap will confidently market vaporware. It has no instinct for the difference. Keep two clearly labeled lists, and date them.</div>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">09</span>Competitors &amp; Alternatives</summary>
-          <div class="sheet-body">
-            <p>The top alternatives to your product or service — one of which may be "doing nothing." If so, capture the honest reasons a customer would do nothing rather than seek a solution.</p>
-          </div>
-        </details>
+      <div class="syllabus workshop-part">
+        <div>
+          <p class="part-label">Part 2 · Product / Service Focus</p>
+          <p class="part-intro">The more familiar you are with something, the harder it is to describe it in fresh, resonant language. Get specific — and get honest about what's true today versus what's on the roadmap.</p>
+        </div>
+        <ol class="ws-list">
+          <li><span class="num">07</span><span class="name">Product Description</span><p class="desc">What, specifically, does a customer get in exchange for their money? Describe the deliverables, not the benefits.</p></li>
+          <li><span class="num">08</span><span class="name">Product Features</span><p class="desc">What are the top features that are shipping now? Keep roadmap items separate and clearly labeled.</p></li>
+          <li><span class="num">09</span><span class="name">Competitors &amp; Alternatives</span><p class="desc">Make an honest case for every alternative — including doing nothing.</p></li>
+        </ol>
       </div>
 
-      <!-- PART 3 -->
-      <div class="workshop-part">
-        <p class="part-label">Part 3 · Connections Focus</p>
-        <p class="part-intro">The groundwork for messaging and strategy: how what you sell connects to what customers want and need. Ideas for campaigns will surface here — capture them in a parking lot and keep going. Allow at least a day of reflection before follow-up discussion; the delay is part of the method.</p>
-
-        <details class="sheet">
-          <summary><span class="num">10</span>Product Connections</summary>
-          <div class="sheet-body">
-            <p>For each major customer want, need, challenge or motivation from Part 1: how does what you sell connect to it? Take this slowly. This is where the insights surface.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">11</span>Product Benefits</summary>
-          <div class="sheet-body">
-            <p>Turn the connections into benefit statements — in the customer's own language — ready for use in marketing materials.</p>
-          </div>
-        </details>
+      <div class="syllabus workshop-part">
+        <div>
+          <p class="part-label">Part 3 · Connections Focus (Customer Benefits)</p>
+          <p class="part-intro">This is where insights often surface: the bridge between what customers need and what you sell.</p>
+        </div>
+        <ol class="ws-list">
+          <li><span class="num">10</span><span class="name">Product Connections</span><p class="desc">How does what you sell connect to customer wants, needs, and challenges from Part 1?</p></li>
+          <li><span class="num">11</span><span class="name">Product Benefits</span><p class="desc">What benefits do those connections deliver for your customer — from their perspective?</p></li>
+        </ol>
       </div>
 
-      <!-- PART 4 -->
-      <div class="workshop-part">
-        <p class="part-label">Part 4 · Deliverables</p>
-        <p class="part-intro">The worksheets above become two deliverables built from the same insight: messaging and positioning for your human channels, and the AI Context Pack that grounds your AI tools. Create both. Messaging is not completed in the group session — give your creatives reflection time with access to subject-matter experts. Note: it typically takes twelve to eighteen months of consistent effort to land a message in a market — refine wording continuously, but don't churn core messaging.</p>
-
-        <details class="sheet">
-          <summary><span class="num">12</span>Messaging &amp; Positioning Framework</summary>
-          <div class="sheet-body">
-            <p>A structured template covering strategy, audience definition, current and future perception, customer challenges, tagline, value propositions at 10–25, 75 and 150 words, messaging pillars and aligned key messages. Full template in the downloadable kit.</p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">13</span>Positioning Statement &amp; Value Propositions</summary>
-          <div class="sheet-body">
-            <p>The foundation statements: <em>For [customer] who need [problem] and want [motivation], [product] is [category] that [what it does]. Unlike [alternatives], [product] [why it's better].</em> Plus value propositions at four lengths for use across channels. <span style="color: var(--mute); font-size: 0.9rem;">Adapted from a framework developed by Hank Barnes.</span></p>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">14</span>Customer Journey Friction Assessment</summary>
-          <div class="sheet-body">
-            <p>Walk the full journey — awareness, exploring solutions, evaluating alternatives, justification and approval, acquisition, implementation, expansion, support, upgrades, upselling — and capture the friction at every step. Is psychological safety a factor? How painful is budget approval and vendor onboarding? What are the switching costs?</p>
-            <div class="ai-note"><span class="tag">Test it</span>"Exploring solutions" means AI assistants as well as search. Ask ChatGPT, Claude and Gemini your customers' problem-solving questions — verbatim, in their words. Does the AI mention you? Accurately? Currently? Who does it recommend instead, and what have they written down that you haven't? Watching an AI recommend a competitor is often the moment skeptics lean in.</div>
-          </div>
-        </details>
-
-        <details class="sheet">
-          <summary><span class="num">15</span>The AI Context Pack</summary>
-          <div class="sheet-body">
-            <p>The deliverable that grounds your AI: your completed worksheets, assembled into a set of plain-text documents formatted for the AI tools your team uses — a Claude Project, a custom GPT, a sales-enablement tool. Nine sections: who you serve, what keeps them up at night, who they trust, current product truth, real alternatives, why it matters, how to sound like you (and them), where the journey breaks — and <strong>contributors and provenance</strong>, so credit travels with the insight. Once deployed, every email, page and campaign your AI drafts is grounded in your workshop instead of generic filler.</p>
-          </div>
-        </details>
+      <div class="syllabus workshop-part">
+        <div>
+          <p class="part-label">Part 4 · Deliverables</p>
+          <p class="part-intro">Your marketing team can use the insights generated through the worksheet process to support richer, more resonant human-generated messaging. In addition, the AI Context Pack translates the workshop results for your AI partners — increasing the quality of their work. Note: messaging is best developed by your creative team after the workshop is completed, rather than as a team exercise.</p>
+        </div>
+        <ol class="ws-list">
+          <li><span class="num">12</span><span class="name">Messaging &amp; Positioning Framework</span><p class="desc">Strategy, audience, perception, pillars, and key messages in one template — to speed onboarding and improve message consistency across the organization.</p></li>
+          <li><span class="num">13</span><span class="name">Positioning Statement &amp; Value Propositions</span><p class="desc">The foundation statements, at four lengths for use across channels.</p><p class="credit">Adapted from a framework developed by Hank Barnes.</p></li>
+          <li><span class="num">14</span><span class="name">Customer Journey Friction Assessment</span><p class="desc">Every step from awareness to upsell — including what AI assistants say when your customers ask who to trust.</p></li>
+          <li><span class="num">15</span><span class="name">The AI Context Pack</span><p class="desc">Your completed worksheets, assembled into standing context for your AI tools — with contributors named, so credit travels with the insight.</p></li>
+        </ol>
       </div>
 
     </div>
@@ -682,7 +568,7 @@
     <div class="wrap">
       <p class="kicker">Run It Now</p>
       <h2>The AI moderator. Copy, paste, begin.</h2>
-      <p style="max-width: 680px;">The ideal CoreQuest moderator was always someone with limited product knowledge who asks the dumb questions — which describes an AI assistant meeting your business for the first time, exactly. For solo founders and small teams, copy this prompt into Claude, ChatGPT or Gemini and run the full sequence today. For cross-functional groups, a human moderator is still the real thing: reading the scowling skeptic in the back of the room is human work.</p>
+      <p style="max-width: 680px;">The ideal CoreQuest moderator is someone with limited product knowledge who asks the dumb questions, forcing the discussion to be grounded in fundamental truths. The good news: an AI assistant meets this requirement by default. Solo founders and small teams can copy this prompt into Claude, ChatGPT or Gemini and work through the process on their own. Note: for cross-functional groups, a human moderator is ideal. Individuals from different backgrounds focused on customer and product truths frequently spark fresh ideas — leading to creative breakthroughs. It's also not uncommon for such teams to surface and solve long-standing business problems on the spot.</p>
       <div class="prompt-shell">
         <div class="prompt-bar">
           <span>corequest-ai-moderator-prompt.md</span>
@@ -719,11 +605,11 @@ After the sequence:
 
 Begin by asking me to briefly describe my business in two or three sentences — then start worksheet 1.</pre>
       </div>
-      <p class="mono-note" style="margin-top: 18px;">A note from the method's author: the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself speeding through a section, filling in the blanks with superficial answers, slow down there. That discomfort is often where new, actionable insight is ready to emerge.</p>
+      <p class="mono-note" style="margin-top: 18px;">A note from the method's author: the AI will be a diligent question-asker, but it cannot notice what you avoid talking about. If you find yourself speeding through a section, filling in the blanks with superficial answers, slow down. That is a sign you may have settled into pattern-based thinking. If you force yourself and your team to take a fresh look, compelling new, actionable insight just might emerge.</p>
       <div style="margin-top: 44px; border-top: 1px solid #35312a; padding-top: 36px;">
-        <h2 style="font-size: clamp(1.4rem, 2.6vw, 2rem);">Running it as a team? Use CoreQuest Session.</h2>
-        <p style="max-width: 680px;">An asynchronous team workshop where credit is enforced by format, not policy: every answer is recorded with its author's name the moment it's written, colleagues build on each other's attributed notes, and the AI Context Pack comes out with provenance assembled automatically. No accounts, no server — the session lives in a file your team owns, and nothing is uploaded anywhere.</p>
-        <p class="mono-note">It also hands your marketing team a head start: a watermarked first-pass positioning draft and an AI drafting prompt built from the session — for marketing to review, edit and approve. Never for general distribution; messaging isn't finished by committee.</p>
+        <h2 style="font-size: clamp(1.4rem, 2.6vw, 2rem);">No time for a workshop? Try CoreQuest Session.</h2>
+        <p style="max-width: 680px;">An asynchronous team workshop allows each team member to contribute insights — with credit enforced by format: every answer is recorded with its author's name as it's written. Colleagues build on each other's attributed notes, and the AI Context Pack includes the provenance automatically. The session lives in a file your team owns, and nothing is uploaded anywhere.</p>
+        <p class="mono-note">It also hands your marketing team a head start: a watermarked first-pass positioning draft and an AI drafting prompt built from the session — for marketing to review, edit and approve.</p>
         <p style="margin-top: 20px;"><a class="btn btn-yellow" href="session.html">Open CoreQuest Session</a></p>
       </div>
     </div>
@@ -733,8 +619,8 @@ Begin by asking me to briefly describe my business in two or three sentences —
   <section class="band-white" id="downloads">
     <div class="wrap">
       <p class="kicker">Downloads</p>
-      <h2>The kit, in the format your AI reads best.</h2>
-      <p style="max-width: 700px;">Plain Markdown, deliberately. Print it, adapt it, or drop the files straight into a Claude Project or custom GPT as standing context. Licensed <a href="http://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a> — use it, share it, build on it, with attribution.</p>
+      <h2>The kit, in your AI's preferred format</h2>
+      <p style="max-width: 700px;">Plain Markdown. Print it, adapt it, or drop the files straight into a Claude Project or custom GPT as standing context. Licensed <a href="http://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a> — use it, share it, build on it, with attribution.</p>
       <div class="dl-grid">
         <div class="dl-card">
           <span class="ft">.md · Complete</span>
@@ -762,6 +648,12 @@ Begin by asking me to briefly describe my business in two or three sentences —
         </div>
         <div class="dl-card">
           <span class="ft">.md</span>
+          <h3>Session Guide</h3>
+          <p>Team workflows for CoreQuest Session — the relay, the parallel fan-out, and the AI merge prompt that consolidates duplicates and combines credit.</p>
+          <a class="btn btn-ghost" href="downloads/corequest-session-guide.md" download>Download</a>
+        </div>
+        <div class="dl-card">
+          <span class="ft">.md</span>
           <h3>AI Context Pack Template</h3>
           <p>The nine-section template that turns completed worksheets into standing context for your AI tools.</p>
           <a class="btn btn-ghost" href="downloads/corequest-ai-context-pack-template.md" download>Download</a>
@@ -779,7 +671,7 @@ Begin by asking me to briefly describe my business in two or three sentences —
       </div>
       <div>
         <p>The CoreQuest method was developed by <strong>Teri Patrick</strong> in 1997. Teri and her team helped hundreds of Silicon Valley clients create their first websites, computer-based training and digital marketing assets — and watched most of them struggle to connect with customers, burying real value under technical detail and hoping prospects would figure it out. It didn't go well.</p>
-        <p>The workshops she built to fix it worked so well they became a stand-alone offering. Companies routinely discovered they had missed the boat on value proposition, positioning — even the design of the offer itself — because core insight was sitting, unarticulated, in the heads of their own people and customers.</p>
+        <p>The workshops she built to fix the problem worked so well they became a stand-alone offering. Companies routinely discovered they had missed the boat on value proposition, positioning — even the design of the offer itself — because core insight was sitting, unarticulated, in the heads of their own people and customers.</p>
         <p>Now retired, Teri makes the complete method available free, because the problem it solves just got bigger: that unarticulated insight is exactly what's missing from the data your AI learns from.</p>
         <blockquote>
           "The workshop alone was worth the price we paid for the entire website. It changed the way we work. It made us better."
